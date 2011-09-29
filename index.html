@@ -28,7 +28,16 @@
 		.align {
 			float: left
 		}
+		form {
+			background-color: rgba(255,255,255,0.4);
+			width: 300px
+		}
+		form fieldset {
+			border: none
+		}
   	</style>
+  	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  	<script type="text/javascript" src="js/main.js"></script>
   </head>
   <body>
   	<div id="left" class="align">
@@ -38,7 +47,16 @@
   		<img src="https://ssl.gstatic.com/s2/oz/images/google-logo-plus-0fbe8f0119f4a902429a5991af5db563.png" />
   		<img src="http://www.html5rocks.com/static/images/identity/HTML5_Badge_64.png" alt="" />
   		
-  		<form action="#"
+  		<form action="#">
+  			<fieldset>
+  				<p>
+  					<input type="text" name="urlPlus" />
+  				</p>
+  				<p>
+  					<input type="submit" name="submit" class="submit" value="Visualiser" />
+  				</p>
+  			</fieldset>
+  		</form>
   	</div>
   	
   </body>
