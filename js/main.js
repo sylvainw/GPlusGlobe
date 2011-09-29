@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	var placesLived;
+	var city
 	$('.submit').click(onClickSubmit);
 });
 
@@ -10,10 +12,11 @@ function onClickSubmit(e)
 	  url: 'https://www.googleapis.com/plus/v1/people/' + $('.userIdPlus').val(),
 	  data: {'fields' : 'placesLived', 'key' : 'AIzaSyC2b1DFxfc0lNrpmS7fazYKJV0E77ojvpQ'},
 	  success: successPlus,
-	  dataType: 'json'
+	  dataType: 'jsonp'
 	});
 }
-function successPlus(data, textStatus)
+function successPlus(data, textStatus, lol)
 {
-	console.log(data);	
+	placesLived = data.placesLived;
+	city = placesLived['0']['value'];
 }
