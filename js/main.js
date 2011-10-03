@@ -1,11 +1,11 @@
-$(document).ready(function() {
+$(document).ready(function()
+{
   initialize();
 	var placesLived;
 	var city
-	$('.submit').click(onClickSubmit);
-});
+	$('#submit').click(onClickSubmit);
 
-function onClickSubmit(e)
+  function onClickSubmit(e)
 {
 	e.preventDefault();
 	$.ajax({
@@ -20,7 +20,6 @@ function successPlus(data, textStatus)
 {
 	placesLived = data.placesLived;
 	city = placesLived['0']['value'];
-	//console.log(city);
 	
 	codeAddress(city);
 }
@@ -57,3 +56,4 @@ function successWriteJson()
 {
   window.location.reload();
 }
+});
