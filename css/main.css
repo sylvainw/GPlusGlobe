@@ -4,7 +4,13 @@
   background: #f5f5f5;
   border: 1px solid #e5e5e5;
   width: 335px;
-  float: right;
+  position: absolute;
+  bottom: 50px;
+  right : 10px;
+  opacity: 0.2
+}
+.google_plus_user_id_box:hover{
+  opacity: 1
 }
 .google_plus_user_id_box h2{
 	font-size: 16px;
