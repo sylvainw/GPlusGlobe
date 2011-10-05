@@ -7,21 +7,29 @@ header{
   background: rgba(245, 245, 245, 0.2);
   height: 50px;
   line-height: 50px;
-  color: #FFF;
-  -webkit-transition: background, color 300ms ease-out 200ms;
-  -moz-transition: background, color 300ms ease-out 200ms;
-  -o-transition: background, color 300ms ease-out 200ms;
+  -webkit-transition: background 300ms ease-out 100ms;
+  -moz-transition: background 300ms ease-out 100ms;
+  -o-transition: background 300ms ease-out 100ms;
 }
-header:hover {
-  color: #222;
+header:hover{
   background: rgb(245, 245, 245);
-  -webkit-transition: background, color 300ms ease-in 200ms;
-  -moz-transition: background, color 300ms ease-in 200ms;
-  -o-transition: background, color 300ms ease-in 200ms;
+  -webkit-transition: background 300ms ease-in 100ms;
+  -moz-transition: background 300ms ease-in 100ms;
+  -o-transition: background 300ms ease-in 100ms;
 }
 header h1 {
+  color: #FFF;
   font: 20px Georgia;
-  margin: 14px 0 0 44px
+  margin: 14px 0 0 44px;
+  -webkit-transition: color 300ms ease-out 100ms;
+  -moz-transition: color 300ms ease-out 100ms;
+  -o-transition: color 300ms ease-out 100ms;
+}
+header:hover h1{
+  color: #222;
+  -webkit-transition: color 300ms ease-in 100ms;
+  -moz-transition: color 300ms ease-in 100ms;
+  -o-transition: color 300ms ease-in 100ms;
 }
 header h1 strong {
   font-size: 14px;
@@ -31,29 +39,33 @@ header h1 strong {
   display: inline-block;
   font-weight: normal;
   color: rgba(255,255,255,0.2);
-  -webkit-transition: color 300ms ease-out 200ms;
-  -moz-transition: color 300ms ease-out 200ms;
-  -o-transition: color 300ms ease-out 200ms;
+  -webkit-transition: color 300ms ease-out 100ms;
+  -moz-transition: color 300ms ease-out 100ms;
+  -o-transition: color 300ms ease-out 100ms;
 }
 header:hover h1 strong {
   color: #222;
-  -webkit-transition: color 300ms ease-in 200ms;
-  -moz-transition: color 300ms ease-in 200ms;
-  -o-transition: color 300ms ease-in 200ms;
+  -webkit-transition: color 300ms ease-in 100ms;
+  -moz-transition: color 300ms ease-in 100ms;
+  -o-transition: color 300ms ease-in 100ms;
 }
 header h1 strong span {
   display: inline-block;
   height: 19px;
   width: 52px;
-  background: 0 -19px transparent url(../img/google+.png) no-repeat;
+  background: transparent url(../img/google+.png) no-repeat;
   text-indent: -9999px;
-  -webkit-transition: background-position 300ms;
-  -moz-transition: background-position 300ms;
-  -o-transition: background-position 300ms;
   cursor: text;
+  opacity: 0.3;
+  -webkit-transition: opacity 300ms ease-out 100ms;
+  -moz-transition: opacity 300ms ease-out 100ms;
+  -o-transition: opacity 300ms ease-out 100ms;
 }
 header:hover h1 strong span {
-  background-position: 0 0;
+  opacity: 1;
+  -webkit-transition: opacity 300ms ease-in 100ms;
+  -moz-transition: opacity 300ms ease-in 100ms;
+  -o-transition: opacity 300ms ease-in 100ms;
 }
 header a {
   position: absolute;
@@ -84,44 +96,25 @@ header a {
   -webkit-user-select: none;
   cursor: default;
   opacity: 0.2;
-  -webkit-transition: opacity 300ms ease-out 200ms;
-  -moz-transition: opacity 300ms ease-out 200ms;
-  -o-transition: opacity 300ms ease-out 200ms;
+  -webkit-transition: opacity 300ms ease-out 100ms;
+  -moz-transition: opacity 300ms ease-out 100ms;
+  -o-transition: opacity 300ms ease-out 100ms;
 }
 header:hover a {
   opacity: 1;
-  -webkit-transition: opacity 300ms ease-in 200ms;
-  -moz-transition: opacity 300ms ease-in 200ms;
-  -o-transition: opacity 300ms ease-in 200ms;
-}
-#credit_box{
-  width: 50%;
-  height: 50%;
-  position: absolute;
-  left: 25%;
-  top: 25%;
-  background-color: rgba(0,0,0,0.8);
-  border-radius: 3px;
-  display: none;
-}
-#credit_box p{
-  margin: 10px;
+  -webkit-transition: opacity 300ms ease-in 100ms;
+  -moz-transition: opacity 300ms ease-in 100ms;
+  -o-transition: opacity 300ms ease-in 100ms;
 }
 
-#credit_box .credit_close_box {
-  position: relative;
-  left: 95%;
+#about_box {
+  display: none;
 }
-#share_box {
-  width: 50%;
-  position: absolute;
-  left: 25%;
-  bottom: 5px;
+#info p{
+  margin: 0;
+  text-align: right;
 }
-#share_box_inner {
-  width: 310px;
-  margin: 0 auto;
-  background-color: rgba(0, 0, 0, 0.8);
-  border-radius: 3px;
-  padding: 10px;
+#info #share_box{
+  width: 303px;
+  margin-left: 160px;
 }
