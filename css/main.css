@@ -1,3 +1,57 @@
+header{
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 952px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 50px;
+  line-height: 50px;
+  color: #FFF;
+}
+header h1 {
+  font: 20px Georgia;
+  margin: 14px 0 0 44px
+}
+header h1 strong {
+  font-size: 14px;
+  font-family: sans-serif;
+  height: 16px;
+  margin: 0 0 0 65px;
+  display: inline-block;
+  font-weight: normal;
+}
+header a {
+  position: absolute;
+  top: 12px;
+  right: 44px;
+
+  height: 27px;
+  font-size: 13px;
+  line-height: 27px;
+  vertical-align: bottom;
+  margin: 0;
+  border: 1px solid #3079ed;
+  color: #fff;
+  text-shadow: 0 1px rgba(0,0,0,0.1);
+  background-color: #4d90fe;
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#4d90fe),to(#4787ed));
+  background-image: -webkit-linear-gradient(top,#4d90fe,#4787ed);
+  background-image: -moz-linear-gradient(top,#4d90fe,#4787ed);
+  background-image: -ms-linear-gradient(top,#4d90fe,#4787ed);
+  background-image: -o-linear-gradient(top,#4d90fe,#4787ed);
+  background-image: linear-gradient(top,#4d90fe,#4787ed);
+  display: inline-block;
+  min-width: 54px;
+  text-align: center;
+  font-weight: bold;
+  padding: 0 8px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-transition: all 0.218s;
+  -webkit-user-select: none;
+  cursor: default;
+}
 .google_plus_user_id_box{
   margin: 12px 0 0;
   padding: 20px 25px 15px;
