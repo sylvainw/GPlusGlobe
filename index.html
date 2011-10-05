@@ -15,27 +15,46 @@
   <h1>Globe + <strong>Add you on the map with your <span>Google +</span> profil.</strong></h1>
   <a href="#" class="button">Add me</a>
 </header>
-
+<div id="credit_box">
+  <a href="#" class="credit_close_box">Close</a>
+  <p>
+    The Globe+ project was created for the first hackathon in Paris at Google France by <a href="#">Sylvain WEBER</a>, <a href="http://www.pierrickcaen.fr">Pierrick CAEN</a> and <a href="#">Victor</a>.
+  </p>
+  <p>
+    This project is an experiment based on <a href="http://www.chromeexperiments.com/globe">WebGL Globe</a>. But also on two APIS : Google+ and Gmaps.
+  </p>
+  <p>
+    With this project you can view where Google+ is the most use.
+  </p>
+</div>
+<div id="share_box">
+  <div id="share_box_inner">
+    <div id="fb-root"></div>
+      <script>
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      </script>
+    <div class="fb-like" data-href="http://globeplus.pierrickcaen.fr/" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-colorscheme="light" data-font="verdana"></div>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-text="Google Chrome experiment : Globe + - Add your Google+ profil on the globe" data-count="horizontal" data-lang="fr">Tweet</a>
+    <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <g:plusone size="medium"></g:plusone>
+  </div>
+</div>
 <footer>
-<a id="ce" href="http://www.chromeexperiments.com/globe">
-  <span>This is a Chrome Experiment</span>
-</a>
+  <div id="info">
+    The Globe+ project is an experiment based on <a href="http://www.chromeexperiments.com/globe">WebGL Globe</a>, Google+ and Gmaps APIs.
+    <a href="#" class="credit">Credits</a>
+  </div>
+  <a id="ce" href="http://www.chromeexperiments.com/globe">
+    <span>This is a Chrome Experiment</span>
+  </a>
 </footer>
-<div id="info">
-  The Globe+ project is an experiment based on WebGL Globe, Google+ and Gmaps APIs.<span class="bull">&bull;</span> By the G Team</a>
-</div>
-<div class="google_plus_user_id_box">
-  <h2>Add your profil on the globe.<strong></strong></h2>
-  <form action="#" method="post">
-  <label>
-    <strong class="label">Google+ ID</strong>
-    <input type="text" name="userIdPlus" id="userIdPlus">
-  </label>
-    <input type="submit" id="submit" value="Add me">
-</div>
-<a id="ce" href="http://www.chromeexperiments.com/globe">
-  <span>This is a Chrome Experiment</span>
-</a>
 
 <script type="text/javascript" src="globe/third-party/Three/ThreeWebGL.js"></script>
 <script type="text/javascript" src="globe/third-party/Three/ThreeExtras.js"></script>

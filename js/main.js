@@ -5,6 +5,8 @@ $(document).ready(function()
   
   initialize();
 	$('#submit').click(onClickSubmit);
+  $('.credit').click(onClickCredit);
+  $('.credit_close_box').click(onClickCredit);
 
   function onClickSubmit(e)
   {
@@ -17,6 +19,13 @@ $(document).ready(function()
 	    dataType: 'jsonp'
 	  });
   }
+
+  function onClickCredit(e)
+  {
+    e.preventDefault();
+    $('#credit_box').fadeToggle();
+  }
+
   function successPlus(data, textStatus)
   {
 	  codeAddress(data.placesLived['0']['value']);
