@@ -36,10 +36,10 @@ $resultPicture    = $mysqli->query($query);
   <body>
     <div id="container"></div>
     <header>
-      <h1>Globe + 
+      <h1>Globe + <span class="underline">Google+</span>
         <strong>
           <a href="https://accounts.google.com/o/oauth2/auth?client_id=926278630057.apps.googleusercontent.com&amp;redirect_uri=http://globeplus.pierrickcaen.fr/oauthcallback.php&amp;scope=https://www.googleapis.com/auth/plus.me&amp;response_type=code" class="button">
-          Add my <span>Google +</span> profile</a> on the Globe.
+          Add my Google + profile</a> on the Globe.
         </strong>
         <a href="#" class="button about">About the project</a>
       </h1>

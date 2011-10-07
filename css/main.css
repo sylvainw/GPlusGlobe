@@ -36,7 +36,7 @@ header h1 strong {
   font-family: sans-serif;
   height: 29px;
   line-height: 29px;
-  margin: 0 0 0 65px;
+  margin: 0 0 0 75px;
   display: inline-block;
   font-weight: normal;
   color: rgba(255,255,255,0.2);
@@ -49,18 +49,6 @@ header:hover h1 strong {
   -webkit-transition: color 300ms ease-in 100ms;
   -moz-transition: color 300ms ease-in 100ms;
   -o-transition: color 300ms ease-in 100ms;
-}
-header h1 strong span {
-  display: inline-block;
-  height: 19px;
-  width: 52px;
-  vertical-align:middle;
-  margin: 0 3px;
-  background: transparent url(../img/google+.png) no-repeat;
-  text-indent: -9999px;
-  -webkit-transition: opacity 300ms ease-out 100ms;
-  -moz-transition: opacity 300ms ease-out 100ms;
-  -o-transition: opacity 300ms ease-out 100ms;
 }
 header a.button {
   font-size: 13px;
@@ -190,4 +178,19 @@ header:hover #wall_picture img {
   border: 1px solid #3079ED;
   font-family: sans-serif;
   font-weight: bold;
+}
+.underline {
+  position: absolute;
+  top: 30px;
+  left: 72px;
+  display: inline-block;
+  height: 19px;
+  width: 52px;
+  vertical-align:middle;
+  margin: 0 3px;
+  background: transparent url(../img/google+.png) no-repeat;
+  text-indent: -9999px;
+  -webkit-transition: opacity 300ms ease-out 100ms;
+  -moz-transition: opacity 300ms ease-out 100ms;
+  -o-transition: opacity 300ms ease-out 100ms;
 }
