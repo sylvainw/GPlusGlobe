@@ -55,7 +55,7 @@ $resultPicture    = $mysqli->query($query);
     <div id="about_box">
       <a href="#" class="about_close_box">Close</a>
       <p>
-        The Globe+ project was created during the first Google hackathon in Paris by 3 Tech enthusiastic guys : <a href="http://www.pierrickcaen.fr">Pierrick CAEN</a>, <a href="http://sylvainweber.com/">Sylvain WEBER</a> and <a href="#">Victor</a>.
+        The Globe+ project was created during the first Google hackathon in Paris by 3 Tech enthusiastic guys : <a href="http://www.pierrickcaen.fr">Pierrick CAEN</a>, <a href="http://www.sylvainweber.com/">Sylvain WEBER</a> and Victor DELPEYROUX.
       </p>
       <p>
         This project is an experiment based on <a href="http://www.chromeexperiments.com/globe">WebGL Globe</a>. But also on three others APIs : Google+, OAuth and Gmaps.
