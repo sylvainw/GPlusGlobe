@@ -62,7 +62,7 @@ header h1 strong span {
   -moz-transition: opacity 300ms ease-out 100ms;
   -o-transition: opacity 300ms ease-out 100ms;
 }
-header a {
+header a.button {
   font-size: 13px;
   line-height: 27px;
   vertical-align: bottom;
@@ -91,7 +91,7 @@ header a {
   -moz-transition: opacity 300ms ease-out 100ms;
   -o-transition: opacity 300ms ease-out 100ms;
 }
-header a:hover {
+header a.button:hover {
   text-decoration: none;
 }
 header:hover a {
@@ -176,7 +176,7 @@ header:hover #wall_picture img {
   text-align: center;
   background-color: rgba(0, 0, 0, 0.8);
 }
-.about{
+.button.about{
   position: absolute;
   top: 12px;
   right: 44px;
