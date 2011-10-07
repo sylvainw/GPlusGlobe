@@ -108,7 +108,21 @@ header:hover a {
 }
 
 #about_box {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: 25%;
+  left: 25%;
   display: none;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 3px;
+}
+#about_box p{
+  margin: 10px;
+}
+.about_close_box{
+  position:relative;
+  left: 100%;
 }
 #info p{
   margin: 0;
