@@ -1,3 +1,13 @@
+<?php
+session_start();
+$mysqli = new mysqli("localhost", "root", "root", "globe_plus");
+$query = "SELECT plus_picture, display_name FROM `user` ORDER BY id DESC LIMIT 0,5";
+
+if (isset($_REQUEST['logout'])) 
+  unset($_SESSION['access_token']);
+
+$resultPicture    = $mysqli->query($query);
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,8 +25,31 @@
     <div id="container"></div>
     <header>
       <h1>Globe + <strong>Add you on the map with your <span>Google +</span> profil.</strong></h1>
-      <a href="https://accounts.google.com/o/oauth2/auth?client_id=699574009061.apps.googleusercontent.com&amp;redirect_uri=http://localhost/oauth2callback&amp;scope=https://www.googleapis.com/auth/plus.me&amp;response_type=token" target="_blank" class="button" id="user_add_profil">Add me</a>
+      <div id="wall_picture">
+      They use it :
+        <?php while($rowResultPicture = $resultPicture->fetch_array(MYSQLI_ASSOC)): ?>
+          <img src="<?php echo $rowResultPicture['plus_picture'] ?>" alt="<?php echo $rowResultPicture['display_name'] ?>" title="<?php echo $rowResultPicture['display_name'] ?>" height="29" />
+        <?php endwhile; ?>
+      </div>
+      <?php if (!isset($_SESSION['access_token'])): ?>
+        <a href="https://accounts.google.com/o/oauth2/auth?client_id=926278630057.apps.googleusercontent.com&amp;redirect_uri=http://localhost/Globe-Plus/oauthcallback.php&amp;scope=https://www.googleapis.com/auth/plus.me&amp;response_type=code" class="button">Add me</a>
+      <?php else : ?>
+        <a href="?logout" class="button">Logout</a>
+      <?php endif ?>      
     </header>
+
+    <?php if (isset($_GET['status'])): ?>
+    <div id="warn">
+      <?php if ($_GET['status'] == 'add'): ?>
+      <span class="label success">Success</span> Your profil has been add on the map.
+      <?php elseif($_GET['status'] == 'not_add'): ?>
+      <span class="label warning">Warning</span> Your profil is already on the map.
+      <?php else: ?>
+      <span class="label important">Error</span> An error has appear.
+      <?php endif ?> 
+    </div>
+    <?php endif ?>
+    
     <div id="about_box">
       <a href="#" class="about_close_box">Close</a>
       <p>
