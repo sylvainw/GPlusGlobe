@@ -20,17 +20,34 @@ $resultPicture    = $mysqli->query($query);
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="js/main.js"></script>
+
+    <script type="text/javascript">
+     var _gaq = _gaq || [];
+     _gaq.push(['_setAccount', 'UA-415654-35']);
+     _gaq.push(['_trackPageview']);
+
+     (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+     })();
+     </script>
   </head>
   <body>
     <div id="container"></div>
     <header>
       <h1>Globe + 
         <strong>
-        <?php if (!isset($_SESSION['access_token'])): ?>
-          <a href="https://accounts.google.com/o/oauth2/auth?client_id=926278630057.apps.googleusercontent.com&amp;redirect_uri=http://globeplus.pierrickcaen.fr/oauthcallback.php&amp;scope=https://www.googleapis.com/auth/plus.me&amp;response_type=code" class="button">Add my <span>Google +</span> profile</a> 
-        <?php endif; ?>
-          on the Globe.
+          <?php if (!isset($_SESSION['access_token'])): ?>
+          <a href="https://accounts.google.com/o/oauth2/auth?client_id=926278630057.apps.googleusercontent.com&amp;redirect_uri=http://globeplus.pierrickcaen.fr/oauthcallback.php&amp;scope=https://www.googleapis.com/auth/plus.me&amp;response_type=code" class="button">
+          <?php else: ?>
+          <a href="#" class="button">
+          <?php endif; ?>
+          Add my <span>Google +</span> profile</a> on the Globe.
         </strong>
+        <?php if (isset($_SESSION['access_token'])): ?>
+        <a href="?logout" class="button logout">Logout</a>
+        <?php endif; ?>
       </h1>
       <div id="wall_picture">
       They use it :
@@ -58,10 +75,7 @@ $resultPicture    = $mysqli->query($query);
         The Globe+ project was created during the first Google hackathon in Paris by 3 Tech enthusiastic guys : <a href="http://www.pierrickcaen.fr">Pierrick CAEN</a>, <a href="http://www.sylvainweber.com/">Sylvain WEBER</a> and Victor DELPEYROUX.
       </p>
       <p>
-        This project is an experiment based on <a href="http://www.chromeexperiments.com/globe">WebGL Globe</a>. But also on three others APIs : Google+, OAuth and Gmaps.
-      </p>
-      <p>
-        With this project you can view where Google+ is the most use.
+        The Globe+ project is a delighted interface based on HTML5 technologies which allow the user to add his own position on the Globe and view all the others previously added.
       </p>
     </div>
     <footer>
@@ -76,7 +90,7 @@ $resultPicture    = $mysqli->query($query);
         </div>
       <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4e8c844c4fe8d5ee"></script>
         <p>
-          The Globe+ project is an experiment based on <a href="http://www.chromeexperiments.com/globe">WebGL Globe</a>, Google+, OAuth and Gmaps APIs.
+          The Globe+ project is an experiment based on <a href="http://www.chromeexperiments.com/globe">WebGL Globe</a>, Google+ (OAuth2) and Gmaps APIs.
           <a href="#" class="about">About the project</a>
         </p>
 

@@ -176,3 +176,12 @@ header:hover #wall_picture img {
   text-align: center;
   background-color: rgba(0, 0, 0, 0.8);
 }
+.logout{
+  position: absolute;
+  top: 12px;
+  right: 44px;
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#dd4b39),to(#d14836));
+  border: 1px solid #B0281A;
+  font-family: sans-serif;
+  font-weight: bold;
+}
