@@ -55,10 +55,10 @@ $resultPicture    = $mysqli->query($query);
     <div id="about_box">
       <a href="#" class="about_close_box">Close</a>
       <p>
-        The Globe+ project was created for the first hackathon in Paris at Google France by <a href="#">Sylvain WEBER</a>, <a href="http://www.pierrickcaen.fr">Pierrick CAEN</a> and <a href="#">Victor</a>.
+        The Globe+ project was created during the first Google hackathon in Paris by 3 Tech enthusiastic guys : <a href="http://www.pierrickcaen.fr">Pierrick CAEN</a>, <a href="http://sylvainweber.com/">Sylvain WEBER</a> and <a href="#">Victor</a>.
       </p>
       <p>
-        This project is an experiment based on <a href="http://www.chromeexperiments.com/globe">WebGL Globe</a>. But also on two APIS : Google+ and Gmaps.
+        This project is an experiment based on <a href="http://www.chromeexperiments.com/globe">WebGL Globe</a>. But also on three others APIs : Google+, OAuth and Gmaps.
       </p>
       <p>
         With this project you can view where Google+ is the most use.
@@ -76,8 +76,8 @@ $resultPicture    = $mysqli->query($query);
         </div>
       <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4e8c844c4fe8d5ee"></script>
         <p>
-          The Globe+ project is an experiment based on <a href="http://www.chromeexperiments.com/globe">WebGL Globe</a>, Google+ and Gmaps APIs.
-          <a href="#" class="about">About</a>
+          The Globe+ project is an experiment based on <a href="http://www.chromeexperiments.com/globe">WebGL Globe</a>, Google+, OAuth and Gmaps APIs.
+          <a href="#" class="about">About the project</a>
         </p>
 
       </div>
