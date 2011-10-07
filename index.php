@@ -84,8 +84,7 @@ $resultPicture    = $mysqli->query($query);
         </div>
       <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4e8c844c4fe8d5ee"></script>
         <p>
-          The Globe+ project is an experiment based on <a href="http://www.chromeexperiments.com/globe">WebGL Globe</a>, Google+ (OAuth2) and Gmaps APIs. | 
-          <a href="#" class="about">About the project</a>
+          The Globe+ project is an experiment based on <a href="http://www.chromeexperiments.com/globe">WebGL Globe</a>, Google+ (OAuth2) and Gmaps APIs.
         </p>
 
       </div>
