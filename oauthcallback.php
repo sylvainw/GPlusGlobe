@@ -75,7 +75,7 @@ if ($client->getAccessToken())
   else
     $city_id = $rowResultCity['id'];
   
-  $query = "SELECT id FROM `user` WHERE plus_id=$id";
+  $query = "SELECT id FROM `user` WHERE plus_id='$id'";
 
   $resultUser    = $mysqli->query($query);
   $rowResultUser = $resultUser->fetch_array(MYSQLI_ASSOC);
