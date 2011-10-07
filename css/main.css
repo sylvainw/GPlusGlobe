@@ -20,7 +20,7 @@ header:hover{
 header h1 {
   color: #FFF;
   font: 20px Georgia;
-  margin: 14px 0 0 44px;
+  margin: 11px 0 0 44px;
   -webkit-transition: color 300ms ease-out 100ms;
   -moz-transition: color 300ms ease-out 100ms;
   -o-transition: color 300ms ease-out 100ms;
@@ -34,7 +34,8 @@ header:hover h1{
 header h1 strong {
   font-size: 14px;
   font-family: sans-serif;
-  height: 16px;
+  height: 29px;
+  line-height: 29px;
   margin: 0 0 0 65px;
   display: inline-block;
   font-weight: normal;
@@ -53,25 +54,15 @@ header h1 strong span {
   display: inline-block;
   height: 19px;
   width: 52px;
+  vertical-align:middle;
+  margin: 0 3px;
   background: transparent url(../img/google+.png) no-repeat;
   text-indent: -9999px;
-  cursor: text;
-  opacity: 0.3;
   -webkit-transition: opacity 300ms ease-out 100ms;
   -moz-transition: opacity 300ms ease-out 100ms;
   -o-transition: opacity 300ms ease-out 100ms;
 }
-header:hover h1 strong span {
-  opacity: 1;
-  -webkit-transition: opacity 300ms ease-in 100ms;
-  -moz-transition: opacity 300ms ease-in 100ms;
-  -o-transition: opacity 300ms ease-in 100ms;
-}
 header a {
-  position: absolute;
-  top: 12px;
-  right: 44px;
-  height: 27px;
   font-size: 13px;
   line-height: 27px;
   vertical-align: bottom;
@@ -99,6 +90,9 @@ header a {
   -webkit-transition: opacity 300ms ease-out 100ms;
   -moz-transition: opacity 300ms ease-out 100ms;
   -o-transition: opacity 300ms ease-out 100ms;
+}
+header a:hover {
+  text-decoration: none;
 }
 header:hover a {
   opacity: 1;

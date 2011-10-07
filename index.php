@@ -24,18 +24,20 @@ $resultPicture    = $mysqli->query($query);
   <body>
     <div id="container"></div>
     <header>
-      <h1>Globe + <strong>Add you on the map with your <span>Google +</span> profil.</strong></h1>
+      <h1>Globe + 
+        <strong>
+        <?php if (!isset($_SESSION['access_token'])): ?>
+          <a href="https://accounts.google.com/o/oauth2/auth?client_id=926278630057.apps.googleusercontent.com&amp;redirect_uri=http://globeplus.pierrickcaen.fr/oauthcallback.php&amp;scope=https://www.googleapis.com/auth/plus.me&amp;response_type=code" class="button">Add my <span>Google +</span> profile</a> 
+        <?php endif; ?>
+          on the Globe.
+        </strong>
+      </h1>
       <div id="wall_picture">
       They use it :
         <?php while($rowResultPicture = $resultPicture->fetch_array(MYSQLI_ASSOC)): ?>
           <img src="<?php echo $rowResultPicture['plus_picture'] ?>" alt="<?php echo $rowResultPicture['display_name'] ?>" title="<?php echo $rowResultPicture['display_name'] ?>" height="29" />
         <?php endwhile; ?>
-      </div>
-      <?php if (!isset($_SESSION['access_token'])): ?>
-        <a href="https://accounts.google.com/o/oauth2/auth?client_id=926278630057.apps.googleusercontent.com&amp;redirect_uri=http://globeplus.pierrickcaen.fr/oauthcallback.php&amp;scope=https://www.googleapis.com/auth/plus.me&amp;response_type=code" class="button">Add me</a>
-      <?php else : ?>
-        <a href="?logout" class="button">Logout</a>
-      <?php endif ?>      
+      </div>      
     </header>
 
     <?php if (isset($_GET['status'])): ?>
