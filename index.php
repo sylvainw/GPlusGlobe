@@ -38,19 +38,13 @@ $resultPicture    = $mysqli->query($query);
     <header>
       <h1>Globe + 
         <strong>
-          <?php if (!isset($_SESSION['access_token'])): ?>
           <a href="https://accounts.google.com/o/oauth2/auth?client_id=926278630057.apps.googleusercontent.com&amp;redirect_uri=http://globeplus.pierrickcaen.fr/oauthcallback.php&amp;scope=https://www.googleapis.com/auth/plus.me&amp;response_type=code" class="button">
-          <?php else: ?>
-          <a href="#" class="button">
-          <?php endif; ?>
           Add my <span>Google +</span> profile</a> on the Globe.
         </strong>
-        <?php if (isset($_SESSION['access_token'])): ?>
-        <a href="?logout" class="button logout">Logout</a>
-        <?php endif; ?>
+        <a href="#" class="about">About the project</a>
       </h1>
       <div id="wall_picture">
-      They use it :
+      Just added :
         <?php while($rowResultPicture = $resultPicture->fetch_array(MYSQLI_ASSOC)): ?>
           <img src="<?php echo $rowResultPicture['plus_picture'] ?>" alt="<?php echo $rowResultPicture['display_name'] ?>" title="<?php echo $rowResultPicture['display_name'] ?>" height="29" />
         <?php endwhile; ?>
