@@ -3,21 +3,21 @@ require_once 'src/apiClient.php';
 require_once 'src/contrib/apiPlusService.php';
 require_once 'src/gMaps.php';
 
-$mysqli = new mysqli("localhost", "root", "root", "globe_plus");
+$mysqli = new mysqli("localhost", "root", "xRK0qYkRyZoW", "globe_plus");
 $gmap   = new gMaps('ABQIAAAAM79ebvitYBAnC3MNa7LjsRQlDS8UPqNVAs4Uc80unY6r7H7m5hQcvqZEGmCacq2tvSwHuCrWxVnYVg');
 $client = new apiClient();
 $plus   = new apiPlusService($client);
 
 $filename = 'gplus.json';
-//$server   = 'http://' . $_SERVER['HTTP_HOST'];
-$server = 'http://localhost/Globe-Plus/';
+$server   = 'http://' . $_SERVER['HTTP_HOST'];
+//$server = 'http://localhost/Globe-Plus/';
 
 session_start();
 
 $client->setApplicationName("Globe +");
 $client->setClientId('926278630057.apps.googleusercontent.com');
 $client->setClientSecret('_ZGvxfmNqHQ-leRKL81fv2GJ');
-$client->setRedirectUri('http://localhost/Globe-Plus/oauthcallback.php');
+$client->setRedirectUri('http://globeplus.pierrickcaen.fr/oauthcallback.php');
 $client->setDeveloperKey('AIzaSyDZhAkzHEzELutXjJ27dD1SNJkNB4hew6g');
 
 if (isset($_GET['code'])) 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-$mysqli = new mysqli("localhost", "root", "root", "globe_plus");
+$mysqli = new mysqli("localhost", "root", "xRK0qYkRyZoW", "globe_plus");
 $query = "SELECT plus_picture, display_name FROM `user` ORDER BY id DESC LIMIT 0,5";
 
 if (isset($_REQUEST['logout'])) 
@@ -32,7 +32,7 @@ $resultPicture    = $mysqli->query($query);
         <?php endwhile; ?>
       </div>
       <?php if (!isset($_SESSION['access_token'])): ?>
-        <a href="https://accounts.google.com/o/oauth2/auth?client_id=926278630057.apps.googleusercontent.com&amp;redirect_uri=http://localhost/Globe-Plus/oauthcallback.php&amp;scope=https://www.googleapis.com/auth/plus.me&amp;response_type=code" class="button">Add me</a>
+        <a href="https://accounts.google.com/o/oauth2/auth?client_id=926278630057.apps.googleusercontent.com&amp;redirect_uri=http://globeplus.pierrickcaen.fr/oauthcallback.php&amp;scope=https://www.googleapis.com/auth/plus.me&amp;response_type=code" class="button">Add me</a>
       <?php else : ?>
         <a href="?logout" class="button">Logout</a>
       <?php endif ?>      
