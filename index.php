@@ -7,6 +7,13 @@ if (isset($_REQUEST['logout']))
   unset($_SESSION['access_token']);
 
 $resultPicture = $mysqli->query($query);
+
+// Retrieve number of users
+$query              = "SELECT COUNT(plus_id) FROM `globe_plus`.`user`";
+$resultUserCount    = $mysqli->query($query);
+$rowResultUserCount = $resultUserCount->fetch_array(MYSQLI_NUM);
+$nbUsers            = $rowResultUserCount[0];
+
 ?>
 
 <!DOCTYPE html>
@@ -78,7 +85,7 @@ $resultPicture = $mysqli->query($query);
         <a href="#" class="button about">About the project</a>
       </h1>
       <div id="wall_picture">
-      Just added :
+      <strong><?php echo $nbUsers ?></strong> people added :
         <?php while($rowResultPicture = $resultPicture->fetch_array(MYSQLI_ASSOC)): ?>
           <a href="https://plus.google.com/<?php echo $rowResultPicture['plus_id'] ?>"><img src="<?php echo $rowResultPicture['plus_picture'] ?>" alt="<?php echo $rowResultPicture['display_name'] ?>" title="<?php echo $rowResultPicture['display_name'] ?>" height="29" /></a>
         <?php endwhile; ?>
