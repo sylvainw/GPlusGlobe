@@ -1,3 +1,4 @@
-RewriteEngine on
-RewriteCond %{HTTP_HOST} ^gplusglobe\.com
-RewriteRule ^(.*)$ http://www.gplusglobe.com/$1 [R=permanent,L]
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} !^www.gplusglobe.com$ [NC]
+RewriteRule ^(.*)$ http://www.gplusglobe.com/$1 [L,R=301]
