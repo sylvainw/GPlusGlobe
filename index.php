@@ -88,9 +88,11 @@ $resultPicture = $mysqli->query($query);
     <?php if (isset($_GET['status'])): ?>
     <div id="warn">
       <?php if ($_GET['status'] == 'add'): ?>
-      <span class="label success">Success</span> Your profil has been add on the map.
-      <?php elseif($_GET['status'] == 'not_add'): ?>
-      <span class="label warning">Warning</span> Your profil is already on the map.
+      <span class="label success">Success</span> Your profile has been add on the map.
+      <?php elseif($_GET['status'] == 'already_add'): ?>
+      <span class="label warning">Warning</span> Your profile is already on the map.
+      <?php elseif($_GET['status'] == 'error_maps'): ?>
+      <span class="label warning">Warning</span> Your profile cannot be located.
       <?php else: ?>
       <span class="label important">Error</span> An error has appear.
       <?php endif ?> 

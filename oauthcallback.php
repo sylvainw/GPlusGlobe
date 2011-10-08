@@ -70,7 +70,10 @@ if ($client->getAccessToken())
       $city_id = $mysqli->insert_id;
     }
     else
-      die('Error maps');
+    {
+      header('Location: ' . $server . '?status=error_maps');
+      die();
+    }      
   }
   else
     $city_id = $rowResultCity['id'];
@@ -90,7 +93,7 @@ if ($client->getAccessToken())
   $mysqli->query($query);
 
   // Write Json
-  if(empty($rowResultUser['id']) && empty($rowResultCity['id']))
+  if(empty($rowResultUser['id']))
   {
       // Retrieve number of users
       $query              = "SELECT COUNT(plus_id) FROM `globe_plus`.`user`";
@@ -130,7 +133,7 @@ if ($client->getAccessToken())
       $status = 'add';
   }
   else
-    $status = 'not_add';
+    $status = 'already_add';
 
   // The access token may have been updated lazily.
   $_SESSION['access_token'] = $client->getAccessToken();
