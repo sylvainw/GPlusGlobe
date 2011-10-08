@@ -1,5 +1,7 @@
 <?php
-session_start();
+require_once 'config.php';
+
+$mysqli = new mysqli(SERVER, USER, PASSWORD, DATABASE);
 
 $query = "SELECT plus_picture, plus_id, display_name FROM `user` ORDER BY id DESC LIMIT 0,10";
 
@@ -13,7 +15,6 @@ $query              = "SELECT COUNT(plus_id) FROM `globe_plus`.`user`";
 $resultUserCount    = $mysqli->query($query);
 $rowResultUserCount = $resultUserCount->fetch_array(MYSQLI_NUM);
 $nbUsers            = $rowResultUserCount[0];
-
 ?>
 
 <!DOCTYPE html>
@@ -79,7 +80,7 @@ $nbUsers            = $rowResultUserCount[0];
     <header>
       <h1><span class="underline">Google+</span>Globe
         <strong>
-          <a href="https://accounts.google.com/o/oauth2/auth?client_id=926278630057.apps.googleusercontent.com&amp;redirect_uri=http://www.gplusglobe.com/oauthcallback.php&amp;scope=https://www.googleapis.com/auth/plus.me&amp;response_type=code" class="button">
+          <a href="https://accounts.google.com/o/oauth2/auth?client_id=<?php echo PLUS_CLIENT_ID ?>&amp;redirect_uri=<?php echo PLUS_CLIENT_SECRET ?>&amp;scope=https://www.googleapis.com/auth/plus.me&amp;response_type=code" class="button">
           Add my Google + profile</a> on the Globe.
         </strong>
         <a href="#" class="button about">About the project</a>
@@ -155,3 +156,5 @@ $nbUsers            = $rowResultUserCount[0];
     </script>
   </body>
 </html>
+
+<?php $mysqli->close(); ?>
