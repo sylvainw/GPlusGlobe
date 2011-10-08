@@ -73,7 +73,7 @@ header a.button {
   -webkit-border-radius: 2px;
   border-radius: 2px;
   -webkit-user-select: none;
-  cursor: default;
+  cursor: pointer;
   opacity: 0.2;
   -webkit-transition: opacity 300ms ease-out 100ms;
   -moz-transition: opacity 300ms ease-out 100ms;
