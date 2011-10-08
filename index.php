@@ -1,6 +1,6 @@
 <?php
 session_start();
-$mysqli = new mysqli("localhost", "root", "xRK0qYkRyZoW", "globe_plus");
+
 $query = "SELECT plus_picture, plus_id, display_name FROM `user` ORDER BY id DESC LIMIT 0,10";
 
 if (isset($_REQUEST['logout'])) 

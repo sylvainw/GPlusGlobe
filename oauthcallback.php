@@ -3,8 +3,7 @@ require_once 'src/apiClient.php';
 require_once 'src/contrib/apiPlusService.php';
 require_once 'src/gMaps.php';
 
-$mysqli = new mysqli("localhost", "root", "xRK0qYkRyZoW", "globe_plus");
-$gmap   = new gMaps('ABQIAAAAM79ebvitYBAnC3MNa7LjsRQlDS8UPqNVAs4Uc80unY6r7H7m5hQcvqZEGmCacq2tvSwHuCrWxVnYVg');
+
 $client = new apiClient();
 $plus   = new apiPlusService($client);
 
@@ -15,10 +14,7 @@ $server   = 'http://' . $_SERVER['HTTP_HOST'];
 session_start();
 
 $client->setApplicationName("Globe +");
-$client->setClientId('926278630057.apps.googleusercontent.com');
-$client->setClientSecret('_ZGvxfmNqHQ-leRKL81fv2GJ');
-$client->setRedirectUri('http://www.gplusglobe.com/oauthcallback.php');
-$client->setDeveloperKey('AIzaSyDZhAkzHEzELutXjJ27dD1SNJkNB4hew6g');
+
 
 if (isset($_GET['code'])) 
 {
@@ -52,7 +48,7 @@ if ($client->getAccessToken())
     header('Location: ' . $server . '?status=error_maps');
     die();
   }
-  
+
   $city        = $me['placesLived'][0]['value'];
   $id          = $me['id'];
 
