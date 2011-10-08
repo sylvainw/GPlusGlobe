@@ -28,8 +28,8 @@ $resultPicture = $mysqli->query($query);
     <!-- End geo position -->
 
     <!-- Defaults meta -->
-    <meta name="description" value="The Globe+ project is a delighted interface based on HTML5 technologies which allow the user to add his own position on the Globe and view all the others previously added." />
-    <meta name="keywords" value="HTML5, Google+, Gmaps, OAuth, Chrome Experiment, WebGL, Globe, APIs" />
+    <meta name="description" content="The Globe+ project is a delighted interface based on HTML5 technologies which allow the user to add his own position on the Globe and view all the others previously added." />
+    <meta name="keywords" content="HTML5, Google+, Gmaps, OAuth, Chrome Experiment, WebGL, Globe, APIs" />
     <!-- End defaults meta -->
 
     <!-- Facebook Open Graph Tags -->
