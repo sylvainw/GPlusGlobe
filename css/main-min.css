@@ -1,0 +1,22 @@
+header{position:absolute;top:0;left:0;min-width:1024px;width:100%;background:rgba(245,245,245,0.2);height:50px;line-height:50px;-webkit-transition:background 300ms ease-out 100ms;-moz-transition:background 300ms ease-out 100ms;-o-transition:background 300ms ease-out 100ms}
+header:hover{background:#f5f5f5;-webkit-transition:background 300ms ease-in 100ms;-moz-transition:background 300ms ease-in 100ms;-o-transition:background 300ms ease-in 100ms}
+header h1{color:#FFF;font:17px Georgia;-webkit-transition:color 300ms ease-out 100ms;-moz-transition:color 300ms ease-out 100ms;-o-transition:color 300ms ease-out 100ms;margin:11px 0 0 44px}
+header h1 strong{font-size:14px;font-family:sans-serif;height:29px;line-height:29px;display:inline-block;font-weight:400;color:rgba(255,255,255,0.2);-webkit-transition:color 300ms ease-out 100ms;-moz-transition:color 300ms ease-out 100ms;-o-transition:color 300ms ease-out 100ms;margin:0 0 0 75px}
+header a.button{font-size:13px;line-height:27px;vertical-align:bottom;border:1px solid #B0281A;color:#fff;text-shadow:0 1px rgba(0,0,0,0.1);background-color:#D14836;background-image:linear-gradient(top,#dd4b39,#d14836);display:inline-block;min-width:54px;text-align:center;font-weight:700;-webkit-border-radius:2px;border-radius:2px;-webkit-user-select:none;cursor:default;opacity:0.2;-webkit-transition:opacity 300ms ease-out 100ms;-moz-transition:opacity 300ms ease-out 100ms;-o-transition:opacity 300ms ease-out 100ms;margin:0;padding:0 8px}
+header a.button:hover{text-decoration:none}
+header #wall_picture{position:absolute;top:12px;left:550px;height:27px;line-height:27px;display:inline-block;color:rgba(255,255,255,0.2)}
+header #wall_picture img{vertical-align:top;box-shadow:0 0 3px #000;margin-left:5px;opacity:0.2}
+#about_box{width:40%;height:40%;position:absolute;top:30%;left:30%;display:none;background-color:rgba(0,0,0,0.8);border-radius:3px}
+#about_box p{margin:10px}
+.about_close_box{position:relative;left:100%}
+#info p{text-align:right;margin:0}
+#info #share_box{width:303px;margin-left:160px}
+.label{background-color:#bfbfbf;font-size:9.75px;font-weight:700;color:#fff;text-transform:uppercase;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;padding:1px 3px 2px}
+.important{background-color:#c43c35}
+.warning{background-color:#f89406}
+.success{background-color:#46a546}
+#warn{position:absolute;top:50px;width:100%;margin-top:10px;text-align:center;background-color:rgba(0,0,0,0.8);padding:5px 0}
+.button.about{position:absolute;top:12px;right:44px;background-color:#4D90FE;background-image:linear-gradient(top,#4d90fe,#4787ed);border:1px solid #3079ED;font-family:sans-serif;font-weight:700}
+.underline{display:inline-block;height:19px;width:63px;vertical-align:middle;margin-right:15px;background:transparent url(../img/google+.png) no-repeat;text-indent:-9999px;-webkit-transition:opacity 300ms ease-out 100ms;-moz-transition:opacity 300ms ease-out 100ms;-o-transition:opacity 300ms ease-out 100ms}
+header:hover h1,header:hover h1 strong,header:hover #wall_picture{color:#222;-webkit-transition:color 300ms ease-in 100ms;-moz-transition:color 300ms ease-in 100ms;-o-transition:color 300ms ease-in 100ms}
+header:hover a,header:hover #wall_picture img{opacity:1;-webkit-transition:opacity 300ms ease-in 100ms;-moz-transition:opacity 300ms ease-in 100ms;-o-transition:opacity 300ms ease-in 100ms}
