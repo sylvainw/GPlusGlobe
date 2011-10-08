@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /js/
+Disallow: /css/
+Disallow: /globe/
+Disallow: /img/
+Disallow: /src/
+Sitemap: http://www.gplusglobe.com/sitemap.xml
