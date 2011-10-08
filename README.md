@@ -1,3 +1,16 @@
+## About the Project ##
+
+URL : [http://gplusglobe.com](http://gplusglobe.com)
+
+The Globe+ project is a delighted interface based on HTML5 technologies which allow visitors to add their own position on the Globe and view all the others previously added.
+
+The Globe+ project was initiated during the first Google hackathon in Paris in september 2011, by 3 Tech enthusiastic guys : [Pierrick CAEN](http://pierrickcaen.fr), [Sylvain WEBER](http://sylvainweber.com) and Victor DELPEYROUX.
+
+It's a Chrome experiment based on WebGL Globe, Google+ (OAuth2) and Gmaps APIs.
+And it's open source, so feel free to fork it on Github or anything else ;)
+
+## About WebGL Globe ##
+
 The **WebGL Globe** is an open platform for visualizing geographic
 information in WebGL enabled browsers.
 It supports data in JSON format, a sample of which you can find [here]
