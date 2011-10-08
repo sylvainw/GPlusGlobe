@@ -47,6 +47,12 @@ if ($client->getAccessToken())
   $img         = filter_var($me['image']['url'], FILTER_VALIDATE_URL);
   $displayName = filter_var($me['displayName'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
 
+  if(!array_key_exists('placesLived', $me))
+  {
+    header('Location: ' . $server . '?status=error_maps');
+    die();
+  }
+  
   $city        = $me['placesLived'][0]['value'];
   $id          = $me['id'];
 
