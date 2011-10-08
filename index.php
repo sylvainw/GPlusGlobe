@@ -129,12 +129,17 @@ $resultPicture = $mysqli->query($query);
 
       </div>
     </footer>
-
-    <script type="text/javascript" src="globe/third-party/Three/ThreeWebGL.js"></script>
+    <!-- <script type="text/javascript" src="globe/third-party/Three/ThreeWebGL.js"></script>
     <script type="text/javascript" src="globe/third-party/Three/ThreeExtras.js"></script>
     <script type="text/javascript" src="globe/third-party/Three/RequestAnimationFrame.js"></script>
     <script type="text/javascript" src="globe/third-party/Three/Detector.js"></script>
-    <script type="text/javascript" src="globe/globe.js"></script>
+    <script type="text/javascript" src="globe/globe.js"></script> -->
+
+    <script type="text/javascript" src="http://data-arts.appspot.com/globe/third-party/Three/ThreeWebGL.js"></script>
+    <script type="text/javascript" src="http://data-arts.appspot.com/globe/third-party/Three/ThreeExtras.js"></script>
+    <script type="text/javascript" src="http://data-arts.appspot.com/globe/third-party/Three/RequestAnimationFrame.js"></script>
+    <script type="text/javascript" src="http://data-arts.appspot.com/globe/third-party/Three/Detector.js"></script>
+    <script type="text/javascript" src="http://data-arts.appspot.com/globe/globe.js"></script>
     <script type="text/javascript">
       var globe=DAT.Globe(document.getElementById('container'));xhr=new XMLHttpRequest();xhr.open('GET','gplus.json',true);xhr.onreadystatechange=function(e){if(xhr.readyState===4){if(xhr.status===200){var data=JSON.parse(xhr.responseText);window.data=data;globe.addData(data,{format:'magnitude'});globe.createPoints();globe.animate()}}};xhr.send(null);
     </script>
