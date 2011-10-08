@@ -19,7 +19,7 @@ header:hover{
 }
 header h1 {
   color: #FFF;
-  font: 20px Georgia;
+  font: 17px Georgia;
   margin: 11px 0 0 44px;
   -webkit-transition: color 300ms ease-out 100ms;
   -moz-transition: color 300ms ease-out 100ms;
@@ -180,14 +180,11 @@ header:hover #wall_picture img {
   font-weight: bold;
 }
 .underline {
-  position: absolute;
-  top: 30px;
-  left: 72px;
   display: inline-block;
   height: 19px;
-  width: 52px;
+  width: 63px;
   vertical-align:middle;
-  margin: 0 3px;
+  margin-right: 15px;
   background: transparent url(../img/google+.png) no-repeat;
   text-indent: -9999px;
   -webkit-transition: opacity 300ms ease-out 100ms;
