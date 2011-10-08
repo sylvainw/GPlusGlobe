@@ -72,7 +72,7 @@ $resultPicture = $mysqli->query($query);
     <header>
       <h1><span class="underline">Google+</span>Globe
         <strong>
-          <a href="https://accounts.google.com/o/oauth2/auth?client_id=926278630057.apps.googleusercontent.com&amp;redirect_uri=http://globeplus.pierrickcaen.fr/oauthcallback.php&amp;scope=https://www.googleapis.com/auth/plus.me&amp;response_type=code" class="button">
+          <a href="https://accounts.google.com/o/oauth2/auth?client_id=926278630057.apps.googleusercontent.com&amp;redirect_uri=http://www.gplusglobe.com/oauthcallback.php&amp;scope=https://www.googleapis.com/auth/plus.me&amp;response_type=code" class="button">
           Add my Google + profile</a> on the Globe.
         </strong>
         <a href="#" class="button about">About the project</a>
@@ -104,7 +104,10 @@ $resultPicture = $mysqli->query($query);
       </p>
       <p>
         The Globe+ project was created during the first Google hackathon in Paris by 3 Tech enthusiastic guys : <a href="http://www.pierrickcaen.fr">Pierrick CAEN</a>, <a href="http://www.sylvainweber.com/">Sylvain WEBER</a> and Victor DELPEYROUX.
-      </p>      
+      </p>
+      <p>
+        <a href="https://github.com/sylvainw/Globe-Plus">Hosted on GitHub</a>
+      </p>  
     </div>
 
     <footer>

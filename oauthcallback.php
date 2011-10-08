@@ -17,7 +17,7 @@ session_start();
 $client->setApplicationName("Globe +");
 $client->setClientId('926278630057.apps.googleusercontent.com');
 $client->setClientSecret('_ZGvxfmNqHQ-leRKL81fv2GJ');
-$client->setRedirectUri('http://globeplus.pierrickcaen.fr/oauthcallback.php');
+$client->setRedirectUri('http://www.gplusglobe.com/oauthcallback.php');
 $client->setDeveloperKey('AIzaSyDZhAkzHEzELutXjJ27dD1SNJkNB4hew6g');
 
 if (isset($_GET['code'])) 
