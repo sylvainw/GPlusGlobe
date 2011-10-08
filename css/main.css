@@ -1,4 +1,4 @@
-header{
+undeheader{
   position: absolute;
   top: 0;
   left: 0;
@@ -181,8 +181,8 @@ header:hover #wall_picture img {
 }
 .underline {
   display: inline-block;
-  height: 19px;
-  width: 63px;
+  height: 21px;
+  width: 69px;
   vertical-align:middle;
   margin-right: 15px;
   background: transparent url(../img/google+.png) no-repeat;

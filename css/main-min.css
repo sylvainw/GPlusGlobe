@@ -17,6 +17,6 @@ header #wall_picture img{vertical-align:top;box-shadow:0 0 3px #000;margin-left:
 .success{background-color:#46a546}
 #warn{position:absolute;top:50px;width:100%;margin-top:10px;text-align:center;background-color:rgba(0,0,0,0.8);padding:5px 0}
 .button.about{position:absolute;top:12px;right:44px;background-color:#4D90FE;background-image:linear-gradient(top,#4d90fe,#4787ed);border:1px solid #3079ED;font-family:sans-serif;font-weight:700}
-.underline{display:inline-block;height:19px;width:63px;vertical-align:middle;margin-right:15px;background:transparent url(../img/google+.png) no-repeat;text-indent:-9999px;-webkit-transition:opacity 300ms ease-out 100ms;-moz-transition:opacity 300ms ease-out 100ms;-o-transition:opacity 300ms ease-out 100ms}
+.underline{display:inline-block;height:21px;width:69px;vertical-align:middle;margin-right:15px;background:transparent url(../img/google+.png) no-repeat;text-indent:-9999px;-webkit-transition:opacity 300ms ease-out 100ms;-moz-transition:opacity 300ms ease-out 100ms;-o-transition:opacity 300ms ease-out 100ms}
 header:hover h1,header:hover h1 strong,header:hover #wall_picture{color:#222;-webkit-transition:color 300ms ease-in 100ms;-moz-transition:color 300ms ease-in 100ms;-o-transition:color 300ms ease-in 100ms}
 header:hover a,header:hover #wall_picture img{opacity:1;-webkit-transition:opacity 300ms ease-in 100ms;-moz-transition:opacity 300ms ease-in 100ms;-o-transition:opacity 300ms ease-in 100ms}
