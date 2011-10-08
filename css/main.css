@@ -116,11 +116,11 @@ header:hover #wall_picture img {
   -o-transition: opacity 300ms ease-in 100ms;
 }
 #about_box {
-  width: 50%;
-  height: 50%;
+  width: 40%;
+  height: 40%;
   position: absolute;
-  top: 25%;
-  left: 25%;
+  top: 30%;
+  left: 30%;
   display: none;
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 3px;
