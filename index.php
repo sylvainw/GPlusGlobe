@@ -55,11 +55,11 @@ $resultPicture = $mysqli->query($query);
     <link rel="canonical" href="http://www.gplusglobe.com" />
 
     <link rel="stylesheet" type="text/css" href="globe/globe.css" />
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/main-min.css" />
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/main-min.js"></script>
 
     <!-- Google Analytics -->
     <script type="text/javascript">
