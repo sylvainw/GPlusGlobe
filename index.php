@@ -116,7 +116,10 @@ $nbUsers            = $rowResultUserCount[0];
       </p>
       <p>
         <a href="https://github.com/sylvainw/Globe-Plus">Hosted on GitHub</a>
-      </p>  
+      </p>
+      <p>
+        <img src="http://www.w3.org/html/logo/downloads/HTML5_Logo_64.png" alt="A HTML5 project" />
+      </p> 
     </div>
 
     <footer>
@@ -126,7 +129,7 @@ $nbUsers            = $rowResultUserCount[0];
       <div id="info">
         <div id="share_box" class="addthis_toolbox addthis_default_style">
           <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-          <a class="addthis_button_tweet" tw:text="I just add my profile on the Google+ Globe project. Add yours !"></a>
+          <a class="addthis_button_tweet" tw:text="I just add my profile on the #Google+ WebGL Globe project. Add yours !"></a>
           <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
         </div>
       <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4e8c844c4fe8d5ee"></script>
