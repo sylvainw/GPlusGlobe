@@ -6,32 +6,66 @@ $query = "SELECT plus_picture, plus_id, display_name FROM `user` ORDER BY id DES
 if (isset($_REQUEST['logout'])) 
   unset($_SESSION['access_token']);
 
-$resultPicture    = $mysqli->query($query);
+$resultPicture = $mysqli->query($query);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Globe+ - a Chrome experiment</title>
 
-    <link rel="stylesheet" type="text/css" href="globe/globe.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!-- Authors -->
+    <meta name="author" content="Pierrick CAEN" />
+    <meta name="author" content="Sylvain WEBER" />
+    <meta name="author" content="Victor DELPEYROUX" />
+    <!-- End authors -->
+
+    <!-- Geo position -->
+    <meta name="geo.region" content="FR-75" />
+    <meta name="geo.placename" content="PARIS" />
+    <meta name="geo.position" content="48.84355085737824;2.3878097534179688" />
+    <meta name="ICBM" content="48.84355085737824, 2.3878097534179688" />
+    <!-- End geo position -->
+
+    <!-- Defaults meta -->
+    <meta name="description" value="The Globe+ project is a delighted interface based on HTML5 technologies which allow the user to add his own position on the Globe and view all the others previously added." />
+    <meta name="keywords" value="HTML5, Google+, Gmaps, OAuth, Chrome Experiment, WebGL, Globe, APIs" />
+    <!-- End defaults meta -->
+
+    <!-- Facebook Open Graph Tags -->
+    <meta property="og:title" content="Globe+ | a Chrome experiment project based on WebGL Globe"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="http://www.gplusglobe.com/img/og-globe+.jpg" />
+    <meta property="og:url" content="http://www.gplusglobe.com"/>
+    <meta property="og:site_name" content="Globe+ | a Chrome experiment project based on WebGL Globe"/>
+    <meta property="fb:admins" content="prcaen, sylvain.weber"/>
+    <meta property="og:latitude" content="48.84355085737824"/>
+    <meta property="og:longitude" content="2.3878097534179688"/>
+    <meta property="og:locality" content="Paris"/>
+    <meta property="og:region" content="Ile de France"/>
+    <meta property="og:postal-code" content="75012"/>
+    <meta property="og:country-name" content="FRANCE"/>
+    <meta property="og:email" content="prcaen@gmail.com"/>
+    <!-- End Facebook Open Graph Tags -->
+
+    <title>Globe+ | a Chrome experiment project based on WebGL Globe and Google APIs</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+    <link rel="canonical" href="http://www.gplusglobe.com" />
+
+    <link rel="stylesheet" type="text/css" href="globe/globe.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="js/main.js"></script>
 
+    <!-- Google Analytics -->
     <script type="text/javascript">
-     var _gaq = _gaq || [];
-     _gaq.push(['_setAccount', 'UA-415654-35']);
-     _gaq.push(['_trackPageview']);
-
-     (function() {
-       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-     })();
-     </script>
+      var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-415654-35']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s)})();
+    </script>
+    <!-- End Google Analytics -->
   </head>
   <body>
     <div id="container"></div>
@@ -62,16 +96,17 @@ $resultPicture    = $mysqli->query($query);
       <?php endif ?> 
     </div>
     <?php endif ?>
-    
+
     <div id="about_box">
       <a href="#" class="about_close_box">Close</a>
       <p>
-        The Globe+ project was created during the first Google hackathon in Paris by 3 Tech enthusiastic guys : <a href="http://www.pierrickcaen.fr">Pierrick CAEN</a>, <a href="http://www.sylvainweber.com/">Sylvain WEBER</a> and Victor DELPEYROUX.
-      </p>
-      <p>
         The Globe+ project is a delighted interface based on HTML5 technologies which allow the user to add his own position on the Globe and view all the others previously added.
       </p>
+      <p>
+        The Globe+ project was created during the first Google hackathon in Paris by 3 Tech enthusiastic guys : <a href="http://www.pierrickcaen.fr">Pierrick CAEN</a>, <a href="http://www.sylvainweber.com/">Sylvain WEBER</a> and Victor DELPEYROUX.
+      </p>      
     </div>
+
     <footer>
       <a id="ce" href="http://www.chromeexperiments.com/globe">
         <span>This is a Chrome Experiment</span>
@@ -96,22 +131,7 @@ $resultPicture    = $mysqli->query($query);
     <script type="text/javascript" src="globe/third-party/Three/Detector.js"></script>
     <script type="text/javascript" src="globe/globe.js"></script>
     <script type="text/javascript">
-      var globe = DAT.Globe(document.getElementById('container'));
-
-      xhr = new XMLHttpRequest();
-      xhr.open('GET', 'gplus.json', true);
-      xhr.onreadystatechange = function(e) {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            var data = JSON.parse(xhr.responseText);
-            window.data = data;
-            globe.addData(data, {format: 'magnitude'});
-            globe.createPoints();
-            globe.animate();
-          }
-        }
-      };
-      xhr.send(null);
+      var globe=DAT.Globe(document.getElementById('container'));xhr=new XMLHttpRequest();xhr.open('GET','gplus.json',true);xhr.onreadystatechange=function(e){if(xhr.readyState===4){if(xhr.status===200){var data=JSON.parse(xhr.responseText);window.data=data;globe.addData(data,{format:'magnitude'});globe.createPoints();globe.animate()}}};xhr.send(null);
     </script>
   </body>
 </html>
