@@ -1,11 +1,11 @@
 <?php
+require_once 'config.php';
 require_once 'src/apiClient.php';
 require_once 'src/contrib/apiPlusService.php';
 require_once 'src/gMaps.php';
-require_once 'config.php';
 
 $mysqli = new mysqli(SERVER, USER, PASSWORD, DATABASE);
-$gmap   = new gMaps(ABQIAAAAM79ebvitYBAnC3MNa7LjsRQlDS8UPqNVAs4Uc80unY6r7H7m5hQcvqZEGmCacq2tvSwHuCrWxVnYVg);
+$gmap   = new gMaps(MAP_KEY);
 $client = new apiClient();
 $plus   = new apiPlusService($client);
 
@@ -55,8 +55,8 @@ if ($client->getAccessToken())
 
   if($gmap->getInfoLocation($city))
   {
-    $latitude  = $gmap->getLatitude();
-    $longitude = $gmap->getLongitude();
+    $latitude  = round($gmap->getLatitude(), 6);
+    $longitude = round($gmap->getLongitude(), 6);
   }
   else
   {
@@ -71,7 +71,7 @@ if ($client->getAccessToken())
   }
 
   // Retrieve city in database
-  $query = "SELECT id FROM `city` WHERE latitude='$latitude' AND longitude='$longitude'";
+  $query = "SELECT id FROM `city` WHERE latitude=$latitude AND longitude=$longitude";
 
   $resultCity    = $mysqli->query($query);
   $rowResultCity = $resultCity->fetch_array(MYSQLI_ASSOC);

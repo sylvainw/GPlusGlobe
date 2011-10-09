@@ -80,7 +80,7 @@ $nbUsers            = $rowResultUserCount[0];
     <header>
       <h1><span class="underline">Google+</span>Globe
         <strong>
-          <a href="https://accounts.google.com/o/oauth2/auth?client_id=<?php echo PLUS_CLIENT_ID ?>&amp;redirect_uri=<?php echo PLUS_CLIENT_SECRET ?>&amp;scope=https://www.googleapis.com/auth/plus.me&amp;response_type=code" class="button">
+          <a href="https://accounts.google.com/o/oauth2/auth?client_id=<?php echo PLUS_CLIENT_ID ?>&amp;redirect_uri=<?php echo PLUS_REDIRECT_URI ?>&amp;scope=https://www.googleapis.com/auth/plus.me&amp;response_type=code" class="button">
           Add my Google + profile</a> on the Globe.
         </strong>
         <a href="#" class="button about">About the project</a>
