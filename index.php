@@ -88,7 +88,7 @@ $nbUsers            = $rowResultUserCount[0];
       <div id="wall_picture">
       <strong><?php echo $nbUsers ?></strong> people added :
         <?php while($rowResultPicture = $resultPicture->fetch_array(MYSQLI_ASSOC)): ?>
-          <a href="https://plus.google.com/<?php echo $rowResultPicture['plus_id'] ?>"><img src="<?php echo $rowResultPicture['plus_picture'] ?>" alt="<?php echo $rowResultPicture['display_name'] ?>" title="<?php echo $rowResultPicture['display_name'] ?>" height="29" /></a>
+          <a href="https://plus.google.com/<?php echo $rowResultPicture['plus_id'] ?>"><img src="<?php echo $rowResultPicture['plus_picture'] ?>" alt="<?php echo htmlentities($rowResultPicture['display_name'], null, 'UTF-8') ?>" title="<?php echo $rowResultPicture['display_name'] ?>" height="29" /></a>
         <?php endwhile; ?>
       </div>      
     </header>
