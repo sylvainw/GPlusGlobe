@@ -1,4 +1,4 @@
-undeheader{
+header{
   position: absolute;
   top: 0;
   left: 0;
@@ -39,7 +39,7 @@ header h1 strong {
   margin: 0 0 0 75px;
   display: inline-block;
   font-weight: normal;
-  color: rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.3);
   -webkit-transition: color 300ms ease-out 100ms;
   -moz-transition: color 300ms ease-out 100ms;
   -o-transition: color 300ms ease-out 100ms;
@@ -95,7 +95,7 @@ header #wall_picture {
   height: 27px;
   line-height: 27px;
   display:inline-block;
-  color: rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.3);
 }
 header #wall_picture img {
   vertical-align: top;
