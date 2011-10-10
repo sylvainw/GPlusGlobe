@@ -128,7 +128,7 @@ if ($client->getAccessToken())
         
         $content .= $rowResultCity['latitude'] . ', ';
         $content .= $rowResultCity['longitude'] . ', ';
-        $content .= $nbUsersLived / $nbUsers * 3 . ', ';
+        $content .= $nbUsersLived / $nbUsers * 18 . ', ';
       }
 
       $content .= ']';
