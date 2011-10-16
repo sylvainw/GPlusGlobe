@@ -100,7 +100,7 @@ $nbUsers            = $rowResultUserCount[0];
       <?php elseif($_GET['status'] == 'already_add'): ?>
       <span class="label warning">Warning</span> Your profile is already on the map.
       <?php elseif($_GET['status'] == 'error_maps'): ?>
-      <span class="label warning">Warning</span> Your profile cannot be located.
+      <span class="label warning">Warning</span> Your profile cannot be located. <a href="#" class="about">Why ?</a>
       <?php else: ?>
       <span class="label important">Error</span> An error has appear.
       <?php endif ?> 
@@ -114,6 +114,10 @@ $nbUsers            = $rowResultUserCount[0];
       </p>
       <p>
         The Globe+ project was created during the first Google hackathon in Paris by 3 Tech enthusiastic guys : <a href="http://www.pierrickcaen.fr">Pierrick CAEN</a>, <a href="http://www.sylvainweber.com/">Sylvain WEBER</a> and Victor DELPEYROUX.
+      </p>
+      <p>
+        <strong>Why I cannot be located ?</strong>
+        You cannot be located because you have not a public location on your Google+ profile. Please switch it in your profile. Change "Places I have lived" to "Visible to anyone on the web". And after that retry to add you on the map. This will be ok now ;).
       </p>
       <p>
         <a href="https://github.com/sylvainw/Globe-Plus">Hosted on GitHub</a>
