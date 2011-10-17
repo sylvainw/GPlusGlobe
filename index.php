@@ -113,9 +113,23 @@ $nbUsers            = $rowResultUserCount[0];
         The Globe+ project is a delighted interface based on HTML5 technologies which allow the user to add his own position on the Globe and view all the others previously added.
       </p>
       <p>
-        The Globe+ project was created during the first Google hackathon in Paris by 3 Tech enthusiastic guys : <a href="http://www.pierrickcaen.fr">Pierrick CAEN</a>, <a href="http://www.sylvainweber.com/">Sylvain WEBER</a> and Victor DELPEYROUX.
+        The Globe+ project was created during the first Google hackathon in Paris by 3 Tech enthusiastic guys :
       </p>
-      <p>
+      <ul>
+        <li>
+            <a href="http://www.pierrickcaen.fr">
+                <img src="https://lh5.googleusercontent.com/-60XpkLFjWMg/AAAAAAAAAAI/AAAAAAAAABc/DoR6EIfyK5U/photo.jpg" alt="" height="29" />
+            </a>
+            <a href="http://www.pierrickcaen.fr">Pierrick CAEN</a>
+        </li>
+        <li>
+            <a href="http://www.sylvainweber.com/">
+                <img src="https://lh4.googleusercontent.com/-dyyqgKMxSlU/AAAAAAAAAAI/AAAAAAAANOs/ZebQTZD_Llw/photo.jpg" alt="" height="29" />
+            </a>
+            <a href="http://www.sylvainweber.com/">Sylvain WEBER</a>(formerly Googler)</li>
+        <li>Victor DELPEYROUX</li>
+      </ul>
+      <p class="helper">
         <strong>Why I cannot be located ?</strong>
         You cannot be located because you have not a public location on your Google+ profile. Please switch it in your profile. Change "Places I have lived" to "Visible to anyone on the web". And after that retry to add you on the map. This will be ok now ;).
       </p>

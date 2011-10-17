@@ -117,7 +117,6 @@ header:hover #wall_picture img {
 }
 #about_box {
   width: 40%;
-  height: 40%;
   position: absolute;
   top: 30%;
   left: 30%;
@@ -190,4 +189,7 @@ header:hover #wall_picture img {
   -webkit-transition: opacity 300ms ease-out 100ms;
   -moz-transition: opacity 300ms ease-out 100ms;
   -o-transition: opacity 300ms ease-out 100ms;
+}
+.helper {
+    font-size:0.9em
 }
