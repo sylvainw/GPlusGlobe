@@ -80,7 +80,7 @@ $nbUsers            = $rowResultUserCount[0];
     <header>
       <h1><span class="underline">Google+</span>Globe
         <strong>
-          <a href="https://accounts.google.com/o/oauth2/auth?client_id=<?php echo PLUS_CLIENT_ID ?>&amp;redirect_uri=<?php echo PLUS_CLIENT_SECRET ?>&amp;scope=https://www.googleapis.com/auth/plus.me&amp;response_type=code" class="button">
+          <a href="https://accounts.google.com/o/oauth2/auth?client_id=<?php echo PLUS_CLIENT_ID ?>&amp;redirect_uri=<?php echo PLUS_REDIRECT_URI ?>&amp;scope=https://www.googleapis.com/auth/plus.me&amp;response_type=code" class="button">
           Add my Google + profile</a> on the Globe.
         </strong>
         <a href="#" class="button about">About the project</a>
@@ -88,7 +88,7 @@ $nbUsers            = $rowResultUserCount[0];
       <div id="wall_picture">
       <strong><?php echo $nbUsers ?></strong> people added :
         <?php while($rowResultPicture = $resultPicture->fetch_array(MYSQLI_ASSOC)): ?>
-          <a href="https://plus.google.com/<?php echo $rowResultPicture['plus_id'] ?>"><img src="<?php echo $rowResultPicture['plus_picture'] ?>" alt="<?php echo $rowResultPicture['display_name'] ?>" title="<?php echo $rowResultPicture['display_name'] ?>" height="29" /></a>
+          <a href="https://plus.google.com/<?php echo $rowResultPicture['plus_id'] ?>"><img src="<?php echo $rowResultPicture['plus_picture'] ?>" alt="<?php echo htmlentities($rowResultPicture['display_name'], null, 'UTF-8') ?>" title="<?php echo $rowResultPicture['display_name'] ?>" height="29" /></a>
         <?php endwhile; ?>
       </div>      
     </header>
@@ -100,7 +100,7 @@ $nbUsers            = $rowResultUserCount[0];
       <?php elseif($_GET['status'] == 'already_add'): ?>
       <span class="label warning">Warning</span> Your profile is already on the map.
       <?php elseif($_GET['status'] == 'error_maps'): ?>
-      <span class="label warning">Warning</span> Your profile cannot be located.
+      <span class="label warning">Warning</span> Your profile cannot be located. <a href="#" class="about">Why ?</a>
       <?php else: ?>
       <span class="label important">Error</span> An error has appear.
       <?php endif ?> 
@@ -113,7 +113,25 @@ $nbUsers            = $rowResultUserCount[0];
         The Globe+ project is a delighted interface based on HTML5 technologies which allow the user to add his own position on the Globe and view all the others previously added.
       </p>
       <p>
-        The Globe+ project was created during the first Google hackathon in Paris by 3 Tech enthusiastic guys : <a href="http://www.pierrickcaen.fr">Pierrick CAEN</a>, <a href="http://www.sylvainweber.com/">Sylvain WEBER</a> and Victor DELPEYROUX.
+        The Globe+ project was created during the first Google hackathon in Paris by 3 Tech enthusiastic guys :
+      </p>
+      <ul>
+        <li>
+            <a href="http://www.pierrickcaen.fr">
+                <img src="https://lh5.googleusercontent.com/-60XpkLFjWMg/AAAAAAAAAAI/AAAAAAAAABc/DoR6EIfyK5U/photo.jpg" alt="" height="29" />
+            </a>
+            <a href="http://www.pierrickcaen.fr">Pierrick CAEN</a>
+        </li>
+        <li>
+            <a href="http://www.sylvainweber.com/">
+                <img src="https://lh4.googleusercontent.com/-dyyqgKMxSlU/AAAAAAAAAAI/AAAAAAAANOs/ZebQTZD_Llw/photo.jpg" alt="" height="29" />
+            </a>
+            <a href="http://www.sylvainweber.com/">Sylvain WEBER</a>(formerly Googler)</li>
+        <li>Victor DELPEYROUX</li>
+      </ul>
+      <p class="helper">
+        <strong>Why I cannot be located ?</strong>
+        You cannot be located because you have not a public location on your Google+ profile. Please switch it in your profile. Change "Places I have lived" to "Visible to anyone on the web". And after that retry to add you on the map. This will be ok now ;).
       </p>
       <p>
         <a href="https://github.com/sylvainw/Globe-Plus">Hosted on GitHub</a>
