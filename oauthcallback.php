@@ -9,6 +9,8 @@ $gmap   = new gMaps(MAP_KEY);
 $client = new apiClient();
 $plus   = new apiPlusService($client);
 
+$mysqli->query('SET NAMES utf8');
+
 session_start();
 
 $client->setApplicationName('Globe +');
