@@ -21,7 +21,6 @@
  * @author Chris Chabot <chabotc@google.com>
  */
 class apiRPC {
-
   static public function execute($requests) {
     $jsonRpcRequest = array();
     foreach ($requests as $request) {
@@ -31,16 +30,16 @@ class apiRPC {
       }
       $jsonRpcRequest[] = array(
         'id' => $request->getBatchKey(),
-        'method' => str_replace('buzz.', 'chili.', $request->getRpcName()),
+        'method' => $request->getRpcName(),
         'params' => $parameters,
       	'apiVersion' => 'v1'
       );
     }
-    $httpRequest = new apiHttpRequest($request->getRpcPath() . '?pp=1');
+    $httpRequest = new apiHttpRequest($request->getRpcPath());
     $httpRequest->setHeaders(array('Content-Type: application/json'));
     $httpRequest->setMethod('POST');
     $httpRequest->setPostBody(json_encode($jsonRpcRequest));
-    $httpRequest = $request->getIo()->authenticatedRequest($httpRequest);
+    $httpRequest = apiClient::$io->authenticatedRequest($httpRequest);
     if (($decodedResponse = json_decode($httpRequest->getResponseBody(), true)) != false) {
       $ret = array();
       foreach ($decodedResponse as $response) {

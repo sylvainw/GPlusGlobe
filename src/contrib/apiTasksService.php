@@ -35,7 +35,7 @@ require_once 'service/apiServiceRequest.php';
      * Creates a new task on the specified task list. (tasks.insert)
      *
      * @param string $tasklist Task list identifier.
-     * @param $postBody the {@link Task}
+     * @param Task $postBody
      * @param array $optParams Optional parameters. Valid optional parameters are listed below.
      *
      * @opt_param string parent Parent task identifier. If the task is created at the top level, this parameter is omitted. Optional.
@@ -59,8 +59,9 @@ require_once 'service/apiServiceRequest.php';
      * @param string $task Task identifier.
      * @return Task
      */
-    public function get($tasklist, $task) {
+    public function get($tasklist, $task, $optParams = array()) {
       $params = array('tasklist' => $tasklist, 'task' => $task);
+      $params = array_merge($params, $optParams);
       $data = $this->__call('get', array($params));
       if ($this->useObjects()) {
         return new Task($data);
@@ -75,8 +76,9 @@ require_once 'service/apiServiceRequest.php';
      *
      * @param string $tasklist Task list identifier.
      */
-    public function clear($tasklist) {
+    public function clear($tasklist, $optParams = array()) {
       $params = array('tasklist' => $tasklist);
+      $params = array_merge($params, $optParams);
       $data = $this->__call('clear', array($params));
       return $data;
     }
@@ -136,11 +138,12 @@ require_once 'service/apiServiceRequest.php';
      *
      * @param string $tasklist Task list identifier.
      * @param string $task Task identifier.
-     * @param $postBody the {@link Task}
+     * @param Task $postBody
      * @return Task
      */
-    public function update($tasklist, $task, Task $postBody) {
+    public function update($tasklist, $task, Task $postBody, $optParams = array()) {
       $params = array('tasklist' => $tasklist, 'task' => $task, 'postBody' => $postBody);
+      $params = array_merge($params, $optParams);
       $data = $this->__call('update', array($params));
       if ($this->useObjects()) {
         return new Task($data);
@@ -153,11 +156,12 @@ require_once 'service/apiServiceRequest.php';
      *
      * @param string $tasklist Task list identifier.
      * @param string $task Task identifier.
-     * @param $postBody the {@link Task}
+     * @param Task $postBody
      * @return Task
      */
-    public function patch($tasklist, $task, Task $postBody) {
+    public function patch($tasklist, $task, Task $postBody, $optParams = array()) {
       $params = array('tasklist' => $tasklist, 'task' => $task, 'postBody' => $postBody);
+      $params = array_merge($params, $optParams);
       $data = $this->__call('patch', array($params));
       if ($this->useObjects()) {
         return new Task($data);
@@ -171,8 +175,9 @@ require_once 'service/apiServiceRequest.php';
      * @param string $tasklist Task list identifier.
      * @param string $task Task identifier.
      */
-    public function delete($tasklist, $task) {
+    public function delete($tasklist, $task, $optParams = array()) {
       $params = array('tasklist' => $tasklist, 'task' => $task);
+      $params = array_merge($params, $optParams);
       $data = $this->__call('delete', array($params));
       return $data;
     }
@@ -192,11 +197,12 @@ require_once 'service/apiServiceRequest.php';
     /**
      * Creates a new task list and adds it to the authenticated user's task lists. (tasklists.insert)
      *
-     * @param $postBody the {@link TaskList}
+     * @param TaskList $postBody
      * @return TaskList
      */
-    public function insert(TaskList $postBody) {
+    public function insert(TaskList $postBody, $optParams = array()) {
       $params = array('postBody' => $postBody);
+      $params = array_merge($params, $optParams);
       $data = $this->__call('insert', array($params));
       if ($this->useObjects()) {
         return new TaskList($data);
@@ -210,8 +216,9 @@ require_once 'service/apiServiceRequest.php';
      * @param string $tasklist Task list identifier.
      * @return TaskList
      */
-    public function get($tasklist) {
+    public function get($tasklist, $optParams = array()) {
       $params = array('tasklist' => $tasklist);
+      $params = array_merge($params, $optParams);
       $data = $this->__call('get', array($params));
       if ($this->useObjects()) {
         return new TaskList($data);
@@ -242,11 +249,12 @@ require_once 'service/apiServiceRequest.php';
      * Updates the authenticated user's specified task list. (tasklists.update)
      *
      * @param string $tasklist Task list identifier.
-     * @param $postBody the {@link TaskList}
+     * @param TaskList $postBody
      * @return TaskList
      */
-    public function update($tasklist, TaskList $postBody) {
+    public function update($tasklist, TaskList $postBody, $optParams = array()) {
       $params = array('tasklist' => $tasklist, 'postBody' => $postBody);
+      $params = array_merge($params, $optParams);
       $data = $this->__call('update', array($params));
       if ($this->useObjects()) {
         return new TaskList($data);
@@ -259,11 +267,12 @@ require_once 'service/apiServiceRequest.php';
      * (tasklists.patch)
      *
      * @param string $tasklist Task list identifier.
-     * @param $postBody the {@link TaskList}
+     * @param TaskList $postBody
      * @return TaskList
      */
-    public function patch($tasklist, TaskList $postBody) {
+    public function patch($tasklist, TaskList $postBody, $optParams = array()) {
       $params = array('tasklist' => $tasklist, 'postBody' => $postBody);
+      $params = array_merge($params, $optParams);
       $data = $this->__call('patch', array($params));
       if ($this->useObjects()) {
         return new TaskList($data);
@@ -276,8 +285,9 @@ require_once 'service/apiServiceRequest.php';
      *
      * @param string $tasklist Task list identifier.
      */
-    public function delete($tasklist) {
+    public function delete($tasklist, $optParams = array()) {
       $params = array('tasklist' => $tasklist);
+      $params = array_merge($params, $optParams);
       $data = $this->__call('delete', array($params));
       return $data;
     }
@@ -312,7 +322,6 @@ class apiTasksService extends apiService {
     $this->restBasePath = '/tasks/v1/';
     $this->version = 'v1';
     $this->serviceName = 'tasks';
-    $this->io = $apiClient->getIo();
 
     $apiClient->addService($this->serviceName, $this->version);
     $this->tasks = new TasksServiceResource($this, $this->serviceName, 'tasks', json_decode('{"methods": {"insert": {"scopes": ["https://www.googleapis.com/auth/tasks"], "parameters": {"tasklist": {"required": true, "type": "string", "location": "path"}, "parent": {"type": "string", "location": "query"}, "previous": {"type": "string", "location": "query"}}, "request": {"$ref": "Task"}, "id": "tasks.tasks.insert", "httpMethod": "POST", "path": "lists/{tasklist}/tasks", "response": {"$ref": "Task"}}, "get": {"scopes": ["https://www.googleapis.com/auth/tasks", "https://www.googleapis.com/auth/tasks.readonly"], "parameters": {"tasklist": {"required": true, "type": "string", "location": "path"}, "task": {"required": true, "type": "string", "location": "path"}}, "id": "tasks.tasks.get", "httpMethod": "GET", "path": "lists/{tasklist}/tasks/{task}", "response": {"$ref": "Task"}}, "clear": {"scopes": ["https://www.googleapis.com/auth/tasks"], "parameters": {"tasklist": {"required": true, "type": "string", "location": "path"}}, "httpMethod": "POST", "path": "lists/{tasklist}/clear", "id": "tasks.tasks.clear"}, "move": {"scopes": ["https://www.googleapis.com/auth/tasks"], "parameters": {"previous": {"type": "string", "location": "query"}, "tasklist": {"required": true, "type": "string", "location": "path"}, "parent": {"type": "string", "location": "query"}, "task": {"required": true, "type": "string", "location": "path"}}, "id": "tasks.tasks.move", "httpMethod": "POST", "path": "lists/{tasklist}/tasks/{task}/move", "response": {"$ref": "Task"}}, "list": {"scopes": ["https://www.googleapis.com/auth/tasks", "https://www.googleapis.com/auth/tasks.readonly"], "parameters": {"dueMax": {"type": "string", "location": "query"}, "tasklist": {"required": true, "type": "string", "location": "path"}, "pageToken": {"type": "string", "location": "query"}, "updatedMin": {"type": "string", "location": "query"}, "completedMin": {"type": "string", "location": "query"}, "maxResults": {"format": "int64", "type": "string", "location": "query"}, "showCompleted": {"type": "boolean", "location": "query"}, "showDeleted": {"type": "boolean", "location": "query"}, "completedMax": {"type": "string", "location": "query"}, "showHidden": {"type": "boolean", "location": "query"}, "dueMin": {"type": "string", "location": "query"}}, "id": "tasks.tasks.list", "httpMethod": "GET", "path": "lists/{tasklist}/tasks", "response": {"$ref": "Tasks"}}, "update": {"scopes": ["https://www.googleapis.com/auth/tasks"], "parameters": {"tasklist": {"required": true, "type": "string", "location": "path"}, "task": {"required": true, "type": "string", "location": "path"}}, "request": {"$ref": "Task"}, "id": "tasks.tasks.update", "httpMethod": "PUT", "path": "lists/{tasklist}/tasks/{task}", "response": {"$ref": "Task"}}, "patch": {"scopes": ["https://www.googleapis.com/auth/tasks"], "parameters": {"tasklist": {"required": true, "type": "string", "location": "path"}, "task": {"required": true, "type": "string", "location": "path"}}, "request": {"$ref": "Task"}, "id": "tasks.tasks.patch", "httpMethod": "PATCH", "path": "lists/{tasklist}/tasks/{task}", "response": {"$ref": "Task"}}, "delete": {"scopes": ["https://www.googleapis.com/auth/tasks"], "parameters": {"tasklist": {"required": true, "type": "string", "location": "path"}, "task": {"required": true, "type": "string", "location": "path"}}, "httpMethod": "DELETE", "path": "lists/{tasklist}/tasks/{task}", "id": "tasks.tasks.delete"}}}', true));
@@ -321,11 +330,13 @@ class apiTasksService extends apiService {
 }
 
 class Task extends apiModel {
-
   public $status;
   public $kind;
   public $updated;
   public $parent;
+  protected $__linksType = 'TaskLinks';
+  protected $__linksDataType = 'array';
+  public $links;
   public $title;
   public $deleted;
   public $completed;
@@ -336,253 +347,225 @@ class Task extends apiModel {
   public $hidden;
   public $id;
   public $selfLink;
-
   public function setStatus($status) {
     $this->status = $status;
   }
-
   public function getStatus() {
     return $this->status;
   }
-  
   public function setKind($kind) {
     $this->kind = $kind;
   }
-
   public function getKind() {
     return $this->kind;
   }
-  
   public function setUpdated($updated) {
     $this->updated = $updated;
   }
-
   public function getUpdated() {
     return $this->updated;
   }
-  
   public function setParent($parent) {
     $this->parent = $parent;
   }
-
   public function getParent() {
     return $this->parent;
   }
-  
+  public function setLinks(/* array(TaskLinks) */ $links) {
+    $this->assertIsArray($links, 'TaskLinks', __METHOD__);
+    $this->links = $links;
+  }
+  public function getLinks() {
+    return $this->links;
+  }
   public function setTitle($title) {
     $this->title = $title;
   }
-
   public function getTitle() {
     return $this->title;
   }
-  
   public function setDeleted($deleted) {
     $this->deleted = $deleted;
   }
-
   public function getDeleted() {
     return $this->deleted;
   }
-  
   public function setCompleted($completed) {
     $this->completed = $completed;
   }
-
   public function getCompleted() {
     return $this->completed;
   }
-  
   public function setDue($due) {
     $this->due = $due;
   }
-
   public function getDue() {
     return $this->due;
   }
-  
   public function setEtag($etag) {
     $this->etag = $etag;
   }
-
   public function getEtag() {
     return $this->etag;
   }
-  
   public function setNotes($notes) {
     $this->notes = $notes;
   }
-
   public function getNotes() {
     return $this->notes;
   }
-  
   public function setPosition($position) {
     $this->position = $position;
   }
-
   public function getPosition() {
     return $this->position;
   }
-  
   public function setHidden($hidden) {
     $this->hidden = $hidden;
   }
-
   public function getHidden() {
     return $this->hidden;
   }
-  
   public function setId($id) {
     $this->id = $id;
   }
-
   public function getId() {
     return $this->id;
   }
-  
   public function setSelfLink($selfLink) {
     $this->selfLink = $selfLink;
   }
-
   public function getSelfLink() {
     return $this->selfLink;
   }
-  
 }
 
+class TaskLinks extends apiModel {
+  public $type;
+  public $link;
+  public $description;
+  public function setType($type) {
+    $this->type = $type;
+  }
+  public function getType() {
+    return $this->type;
+  }
+  public function setLink($link) {
+    $this->link = $link;
+  }
+  public function getLink() {
+    return $this->link;
+  }
+  public function setDescription($description) {
+    $this->description = $description;
+  }
+  public function getDescription() {
+    return $this->description;
+  }
+}
 
 class TaskList extends apiModel {
-
   public $kind;
   public $etag;
   public $id;
   public $selfLink;
   public $title;
-
   public function setKind($kind) {
     $this->kind = $kind;
   }
-
   public function getKind() {
     return $this->kind;
   }
-  
   public function setEtag($etag) {
     $this->etag = $etag;
   }
-
   public function getEtag() {
     return $this->etag;
   }
-  
   public function setId($id) {
     $this->id = $id;
   }
-
   public function getId() {
     return $this->id;
   }
-  
   public function setSelfLink($selfLink) {
     $this->selfLink = $selfLink;
   }
-
   public function getSelfLink() {
     return $this->selfLink;
   }
-  
   public function setTitle($title) {
     $this->title = $title;
   }
-
   public function getTitle() {
     return $this->title;
   }
-  
 }
-
 
 class TaskLists extends apiModel {
-
   public $nextPageToken;
+  protected $__itemsType = 'TaskList';
+  protected $__itemsDataType = 'array';
   public $items;
   public $kind;
   public $etag;
-
   public function setNextPageToken($nextPageToken) {
     $this->nextPageToken = $nextPageToken;
   }
-
   public function getNextPageToken() {
     return $this->nextPageToken;
   }
-  
-  public function setItems(TaskList $items) {
+  public function setItems(/* array(TaskList) */ $items) {
+    $this->assertIsArray($items, 'TaskList', __METHOD__);
     $this->items = $items;
   }
-
   public function getItems() {
     return $this->items;
   }
-  
   public function setKind($kind) {
     $this->kind = $kind;
   }
-
   public function getKind() {
     return $this->kind;
   }
-  
   public function setEtag($etag) {
     $this->etag = $etag;
   }
-
   public function getEtag() {
     return $this->etag;
   }
-  
 }
-
 
 class Tasks extends apiModel {
-
   public $nextPageToken;
+  protected $__itemsType = 'Task';
+  protected $__itemsDataType = 'array';
   public $items;
   public $kind;
   public $etag;
-
   public function setNextPageToken($nextPageToken) {
     $this->nextPageToken = $nextPageToken;
   }
-
   public function getNextPageToken() {
     return $this->nextPageToken;
   }
-  
-  public function setItems(Task $items) {
+  public function setItems(/* array(Task) */ $items) {
+    $this->assertIsArray($items, 'Task', __METHOD__);
     $this->items = $items;
   }
-
   public function getItems() {
     return $this->items;
   }
-  
   public function setKind($kind) {
     $this->kind = $kind;
   }
-
   public function getKind() {
     return $this->kind;
   }
-  
   public function setEtag($etag) {
     $this->etag = $etag;
   }
-
   public function getEtag() {
     return $this->etag;
   }
-  
 }
-

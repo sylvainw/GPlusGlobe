@@ -15,17 +15,22 @@
  * limitations under the License.
  */
 
-// Check for the required json and curl extensions, the google api php client won't function without
+// Check for the required json and curl extensions, the Google API PHP Client won't function without them.
 if (! function_exists('curl_init')) {
-  throw new Exception('The Google PHP API Library needs the CURL PHP extension');
+  throw new Exception('The Google PHP API Client requires the CURL PHP extension');
 }
+
 if (! function_exists('json_decode')) {
-  throw new Exception('The Google PHP API Library needs the JSON PHP extension');
+  throw new Exception('The Google PHP API Client requires the JSON PHP extension');
+}
+
+if (! ini_get('date.timezone') && function_exists('date_default_timezone_set')) {
+  date_default_timezone_set('UTC');
 }
 
 // hack around with the include paths a bit so the library 'just works'
 $cwd = dirname(__FILE__);
-set_include_path("$cwd" . PATH_SEPARATOR . ":" . get_include_path());
+set_include_path("$cwd" . PATH_SEPARATOR . get_include_path());
 
 require_once "config.php";
 // If a local configuration file is found, merge it's values with the default configuration
@@ -36,43 +41,41 @@ if (file_exists($cwd . '/local_config.php')) {
 }
 
 // Include the top level classes, they each include their own dependencies
-require_once "auth/apiAuth.php";
-require_once "cache/apiCache.php";
-require_once "io/apiIO.php";
-require_once "service/apiService.php";
-
-// Exceptions that the Google PHP API Library can throw
-class apiException extends Exception {}
-class apiAuthException extends apiException {}
-class apiCacheException extends apiException {}
-class apiIOException extends apiException {}
-class apiServiceException extends apiException {}
-
-
-// Global array of type handlers, used by the API request executors to parse results
-// maps the type strings ('plus#activity') to a class representation (plusActivityModel)
-// which will be automatically triggered on input.
-global $apiTypeHandlers;
-$apiTypeHandlers = array();
+require_once 'auth/apiAuth.php';
+require_once 'cache/apiCache.php';
+require_once 'io/apiIO.php';
+require_once 'service/apiService.php';
 
 /**
  * The Google API Client
  * http://code.google.com/p/google-api-php-client/
  *
  * @author Chris Chabot <chabotc@google.com>
+ * @author Chirag Shah <chirags@google.com>
  */
 class apiClient {
   // the version of the discovery mechanism this class is meant to work with
   const discoveryVersion = 'v0.3';
 
-  // worker classes
-  protected $auth;
-  protected $io;
-  protected $cache;
+  /**
+   * @static
+   * @var apiAuth $auth
+   */
+  static $auth;
+
+  /** @var apiIo $io */
+  static $io;
+
+  /** @var apiCache $cache */
+  static $cache;
+
+  /** @var array $scopes */
   protected $scopes = array();
+
+  /** @var bool $useObjects */
   protected $useObjects = false;
 
-  // definitions of services that are discover()'rd
+  // definitions of services that are discovered.
   protected $services = array();
 
   // Used to track authenticated state, can't discover services after doing authenticate()
@@ -83,13 +86,12 @@ class apiClient {
       'request_token_url' => 'https://www.google.com/accounts/OAuthGetRequestToken',
       'access_token_url' => 'https://www.google.com/accounts/OAuthGetAccessToken');
 
-  public function __construct() {
+  public function __construct($config = array()) {
     global $apiConfig;
-    // Create our worker classes
-    $this->cache = new $apiConfig['cacheClass']();
-    $this->auth = new $apiConfig['authClass']();
-    $this->io = new $apiConfig['ioClass']($this->cache, $this->auth);
-    $this->auth->setIo($this->io);
+    $apiConfig = array_merge($apiConfig, $config);
+    self::$cache = new $apiConfig['cacheClass']();
+    self::$auth = new $apiConfig['authClass']();
+    self::$io = new $apiConfig['ioClass']();
   }
 
   public function discover($service, $version = 'v1') {
@@ -105,7 +107,7 @@ class apiClient {
     global $apiConfig;
     if ($this->authenticated) {
       // Adding services after being authenticated, since the oauth scope is already set (so you wouldn't have access to that data)
-      throw new apiException("Can't add services after having authenticated");
+      throw new apiException('Cant add services after having authenticated');
     }
     $this->services[$service] = $this->defaultService;
     if (isset($apiConfig['services'][$service])) {
@@ -120,20 +122,22 @@ class apiClient {
    * @param string $authClassName
    */
   public function setAuthClass($authClassName) {
-    $this->auth = null;
-    $this->auth = new $authClassName();
+    self::$auth = new $authClassName();
   }
 
   public function authenticate() {
     $service = $this->prepareService();
     $this->authenticated = true;
-    return $this->auth->authenticate($service);
+    return self::$auth->authenticate($service);
   }
 
-  
+  /**
+   * Construct the OAuth 2.0 authorization request URI.
+   * @return string 
+   */
   public function createAuthUrl() {
     $service = $this->prepareService();
-    return $this->auth->createAuthUrl($service);
+    return self::$auth->createAuthUrl($service['scope']);
   }
 
   private function prepareService() {
@@ -162,18 +166,27 @@ class apiClient {
   }
 
   /**
-   * Set the OAuth access token using the string that resulted from calling authenticate()
-   * @param (serialized) string $accessToken
+   * Set the OAuth 2.0 access token using the string that resulted from calling authenticate()
+   * or apiClient#getAccessToken().
+   * @param string $accessToken JSON encoded string containing in the following format:
+   * {"access_token":"TOKEN", "refresh_token":"TOKEN", "token_type":"Bearer",
+   *  "expires_in":3600, "id_token":"TOKEN", "created":1320790426}
    */
   public function setAccessToken($accessToken) {
     if ($accessToken == null || 'null' == $accessToken) {
       $accessToken = null;
     }
-    $this->auth->setAccessToken($accessToken);
+    self::$auth->setAccessToken($accessToken);
   }
 
+  /**
+   * Get the OAuth 2.0 access token.
+   * @return string $accessToken JSON encoded string in the following format:
+   * {"access_token":"TOKEN", "refresh_token":"TOKEN", "token_type":"Bearer",
+   *  "expires_in":3600,"id_token":"TOKEN", "created":1320790426}
+   */
   public function getAccessToken() {
-    $token = $this->auth->getAccessToken();
+    $token = self::$auth->getAccessToken();
     return (null == $token || 'null' == $token) ? null : $token;
   }
 
@@ -183,7 +196,7 @@ class apiClient {
    * @param string $developerKey
    */
   public function setDeveloperKey($developerKey) {
-    $this->auth->setDeveloperKey($developerKey);
+    self::$auth->setDeveloperKey($developerKey);
   }
 
   /**
@@ -192,8 +205,27 @@ class apiClient {
    * @param string $state
    */
   public function setState($state) {
-    $this->auth->setState($state);
+    self::$auth->setState($state);
   }
+
+  /**
+   * @param string $accessType Possible values for access_type include:
+   *  {@code "offline"} to request offline access from the user. (This is the default value)
+   *  {@code "online"} to request online access from the user.
+   */
+  public function setAccessType($accessType) {
+    self::$auth->setAccessType($accessType);
+  }
+
+  /**
+   * @param string $approvalPrompt Possible values for approval_prompt include:
+   *  {@code "force"} to force the approval UI to appear. (This is the default value)
+   *  {@code "auto"} to request auto-approval when possible.
+   */
+  public function setApprovalPrompt($approvalPrompt) {
+    self::$auth->setApprovalPrompt($approvalPrompt);
+  }
+
   /**
    * Set the application name, this is included in the User-Agent HTTP header.
    * @param string $applicationName
@@ -204,37 +236,58 @@ class apiClient {
   }
 
   /**
-   * Set the OAuth2 Client ID.
+   * Set the OAuth 2.0 Client ID.
    * @param string $clientId
    */
   public function setClientId($clientId) {
     global $apiConfig;
     $apiConfig['oauth2_client_id'] = $clientId;
-    $this->auth->clientId = $clientId;
+    self::$auth->clientId = $clientId;
   }
   
   /**
-   * Set the OAuth2 Client Secret.
+   * Set the OAuth 2.0 Client Secret.
    * @param string $clientSecret
    */
   public function setClientSecret($clientSecret) {
     global $apiConfig;
     $apiConfig['oauth2_client_secret'] = $clientSecret;
-    $this->auth->clientSecret = $clientSecret;
+    self::$auth->clientSecret = $clientSecret;
   }
 
   /**
-   * Set the OAuth2 Redirect URI.
+   * Set the OAuth 2.0 Redirect URI.
    * @param string $redirectUri
    */
   public function setRedirectUri($redirectUri) {
     global $apiConfig;
     $apiConfig['oauth2_redirect_uri'] = $redirectUri;
-    $this->auth->redirectUri = $redirectUri;
+    self::$auth->redirectUri = $redirectUri;
   }
 
   /**
-   * This function allows you to overrule the automatically generated scopes, so that you can ask for more or less permission in the auth flow
+   * Fetches a fresh OAuth 2.0 access token with the given refresh token.
+   * @param string $refreshToken
+   * @return void
+   */
+  public function refreshToken($refreshToken) {
+    self::$auth->refreshToken($refreshToken);
+  }
+
+  /**
+   * Revoke an OAuth2 access token or refresh token. This method will revoke the current access
+   * token, if a token isn't provided.
+   * @throws apiAuthException
+   * @param string|null $token The token (access token or a refresh token) that should be revoked.
+   * @return boolean Returns True if the revocation was successful, otherwise False.
+   */
+  public function revokeToken($token = null) {
+    self::$auth->revokeToken($token);
+  }
+
+  /**
+   * This function allows you to overrule the automatically generated scopes,
+   * so that you can ask for more or less permission in the auth flow
    * Set this before you call authenticate() though!
    * @param array $scopes, ie: array('https://www.googleapis.com/auth/plus', 'https://www.googleapis.com/auth/moderator')
    */
@@ -254,34 +307,46 @@ class apiClient {
   }
 
   private function discoverService($serviceName, $serviceURI) {
-    $request = $this->io->makeRequest(new apiHttpRequest($serviceURI));
+    $request = self::$io->makeRequest(new apiHttpRequest($serviceURI));
     if ($request->getResponseHttpCode() != 200) {
-      throw new apiException("Could not fetch discovery document for $serviceName, http code: " . $request->getResponseHttpCode() . ", response body: " . $request->getResponseBody());
+      throw new apiException("Could not fetch discovery document for $serviceName, code: "
+            . $request->getResponseHttpCode() . ", response: " . $request->getResponseBody());
     }
     $discoveryResponse = $request->getResponseBody();
     $discoveryDocument = json_decode($discoveryResponse, true);
     if ($discoveryDocument == NULL) {
       throw new apiException("Invalid json returned for $serviceName");
     }
-    return new apiService($serviceName, $discoveryDocument, $this->io);
+    return new apiService($serviceName, $discoveryDocument, apiClient::getIo());
   }
 
-  public function registerTypeHandler($type, $handlerClass) {
-    global $apiTypeHandlers;
-    $apiTypeHandlers[$type] = $handlerClass;
+  /**
+   * @static
+   * @return apiAuth the implementation of apiAuth.
+   */
+  public static function getAuth() {
+    return apiClient::$auth;
   }
 
-  /*
+  /**
+   * @static
    * @return apiIo the implementation of apiIo.
    */
-  public function getIo() {
-    return $this->io;
+  public static function getIo() {
+    return apiClient::$io;
   }
 
-  /*
+  /**
    * @return apiCache the implementation of apiCache.
    */
   public function getCache() {
-    return $this->cache;
+    return apiClient::$cache;
   }
 }
+
+// Exceptions that the Google PHP API Library can throw
+class apiException extends Exception {}
+class apiAuthException extends apiException {}
+class apiCacheException extends apiException {}
+class apiIOException extends apiException {}
+class apiServiceException extends apiException {}

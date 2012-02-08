@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright 2010 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,42 +17,59 @@
 
 /**
  * Implements the actual methods/resources of the discovered Google API using magic function
- * calling overloading (__call()), which on call will see if the method name (buzz.activities.list)
+ * calling overloading (__call()), which on call will see if the method name (plus.activities.list)
  * is available in this service, and if so construct an apiServiceRequest representing it.
  *
  * @author Chris Chabot <chabotc@google.com>
+ * @author Chirag Shah <chirags@google.com>
  *
  */
 class apiServiceResource {
   // Valid query parameters that work, but don't appear in discovery.
   private $stackParameters = array(
+      'alt' => array('type' => 'string', 'location' => 'query'),
+      'fields' => array('type' => 'string', 'location' => 'query'),
       'trace' => array('type' => 'string', 'location' => 'query'),
       'userIp' => array('type' => 'string', 'location' => 'query'),
       'userip' => array('type' => 'string', 'location' => 'query')
   );
+
+  /** @var apiService $service */
   private $service;
+
+  /** @var string $serviceName */
   private $serviceName;
+
+  /** @var string $resourceName */
   private $resourceName;
+
+  /** @var array $methods */
   private $methods;
 
   public function __construct($service, $serviceName, $resourceName, $resource) {
     $this->service = $service;
     $this->serviceName = $serviceName;
     $this->resourceName = $resourceName;
-    $this->methods = $resource['methods'];
+    $this->methods = isset($resource['methods']) ? $resource['methods'] : array($resourceName => $resource);
   }
 
+  /**
+   * @param $name
+   * @param $arguments
+   * @return apiServiceRequest|array
+   * @throws apiException
+   */
   public function __call($name, $arguments) {
     if (count($arguments) != 1 && count($arguments) != 2) {
-      throw new apiException("apiClient method calls expect one or two parameter (for example: \$apiClient->buzz->activities->list( array('userId' => '@me')) or when executing a batch request: \$apiClient->buzz->activities->list( array('userId' => '@me'), 'batchKey')");
+      throw new apiException("apiClient method calls expect 1 or 2 parameter (\$client->plus->activities->list(array('userId' => 'me'))");
     }
     if (! is_array($arguments[0])) {
-      throw new apiException("apiClient method parameter should be an array (for example: \$apiClient->buzz->activities->list( array('userId' => '@me'))");
+      throw new apiException("apiClient method parameter should be an array (\$client->plus->activities->list(array('userId' => 'me'))");
     }
     $batchKey = false;
     if (isset($arguments[1])) {
       if (! is_string($arguments[1])) {
-        throw new apiException("The batch key parameter should be a string, for example: \$apiClient->buzz->activities->list( array('userId' => '@me'), 'batchKey')");
+        throw new apiException("The batch key parameter should be a string (\$client->plus->activities->list( array('userId' => '@me'), 'batchKey'))");
       }
       $batchKey = $arguments[1];
     }
@@ -106,16 +123,8 @@ class apiServiceResource {
         }
         if (isset($parameters[$paramName])) {
           $value = $parameters[$paramName];
-          // check to see if the param value matches the required pattern
-          if (isset($parameters[$paramName]['pattern']) && ! empty($parameters[$paramName]['pattern'])) {
-            if (preg_match('|' . $parameters[$paramName]['pattern'] . '|', $value) == 0) {
-              throw new apiException("($name) invalid parameter format for $paramName: $value doesn't match \"{$parameters[$paramName]['pattern']}\"");
-            }
-          }
           $parameters[$paramName] = $paramSpec;
           $parameters[$paramName]['value'] = $value;
-          // remove all the bits that were already validated in this function & are no longer relevant within the execution chain
-          unset($parameters[$paramName]['pattern']);
           unset($parameters[$paramName]['required']);
         } else {
           unset($parameters[$paramName]);
@@ -133,7 +142,8 @@ class apiServiceResource {
       $method['path'] = $method['restPath'];
     }
 
-    $request = new apiServiceRequest($this->service->getIo(), $this->service->getRestBasePath(), $this->service->getRpcPath(), $method['path'], $method['id'], $method['httpMethod'], $parameters, $postBody);
+    $request = new apiServiceRequest($this->service->restBasePath, $this->service->rpcPath,
+        $method['path'], $method['id'], $method['httpMethod'], $parameters, $postBody);
     if ($batchKey) {
       $request->setBatchKey($batchKey);
       return $request;
@@ -147,13 +157,13 @@ class apiServiceResource {
     return (isset($apiConfig['use_objects']) && $apiConfig['use_objects']);
   }
 
-  private function stripNull(&$o) {
+  protected function stripNull(&$o) {
     $o = (array) $o;
     foreach ($o as $k => $v) {
       if ($v === null) {
         unset($o[$k]);
       }
-      elseif ('object' == gettype($v) || 'array' == gettype($v)) {
+      elseif (is_object($v) || is_array($v)) {
         $this->stripNull($o[$k]);
       }
     }

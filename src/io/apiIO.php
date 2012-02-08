@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright 2010 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-require_once "io/apiHttpRequest.php";
-require_once "io/apiCurlIO.php";
-require_once "io/apiREST.php";
-require_once "io/apiRPC.php";
+require_once 'io/apiHttpRequest.php';
+require_once 'io/apiCurlIO.php';
+require_once 'io/apiREST.php';
+require_once 'io/apiRPC.php';
 
 /**
  * Abstract IO class
@@ -26,14 +26,6 @@ require_once "io/apiRPC.php";
  * @author Chris Chabot <chabotc@google.com>
  */
 interface apiIO {
-
-  /**
-   * Called by the apiClient
-   * @param $storage
-   * @param $auth
-   */
-  public function __construct(apiCache $storage, apiAuth $auth);
-
   /**
    * An utility function that first calls $this->auth->sign($request) and then executes makeRequest()
    * on that signed request. Used for when a request should be authenticated
@@ -48,5 +40,4 @@ interface apiIO {
    * @return apiHttpRequest $request
    */
   public function makeRequest(apiHttpRequest $request);
-
 }
