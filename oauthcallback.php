@@ -80,7 +80,7 @@ if ($client->getAccessToken())
 
   if(empty($rowResultCity['id']))
   {      
-    $query = "INSERT INTO `globe_plus`.`city` (`id`, `name`, `latitude`, `longitude`) VALUES (NULL, '$city', '$latitude', '$longitude')";
+    $query = "INSERT INTO `".DATABASE."`.`city` (`id`, `name`, `latitude`, `longitude`) VALUES (NULL, '$city', '$latitude', '$longitude')";
     $mysqli->query($query);
 
     $city_id = $mysqli->insert_id; 
@@ -96,7 +96,7 @@ if ($client->getAccessToken())
   if(empty($rowResultUser['id']))
   {
     // Insert user in DB
-    $query = "INSERT INTO `globe_plus`.`user` (`id`, `plus_id`, `display_name`, `plus_picture`, `city_id`) 
+    $query = "INSERT INTO `".DATABASE."`.`user` (`id`, `plus_id`, `display_name`, `plus_picture`, `city_id`) 
               VALUES (NULL, $id, '$displayName', '$img', $city_id)";
   }
 
@@ -106,13 +106,13 @@ if ($client->getAccessToken())
   if(empty($rowResultUser['id']))
   {
       // Retrieve number of users
-      $query              = "SELECT COUNT(plus_id) FROM `globe_plus`.`user`";
+      $query              = "SELECT COUNT(plus_id) FROM `".DATABASE."`.`user`";
       $resultUserCount    = $mysqli->query($query);
       $rowResultUserCount = $resultUserCount->fetch_array(MYSQLI_NUM);
       $nbUsers            = $rowResultUserCount[0];
 
       // Retrieve all coordinates
-      $query         = "SELECT id, latitude, longitude FROM `globe_plus`.`city`";
+      $query         = "SELECT id, latitude, longitude FROM `".DATABASE."`.`city`";
       $resultCity    = $mysqli->query($query);
 
       $handleW = fopen(JSON_FILENAME, 'w') or die ('can\'t open gplus json');
@@ -123,7 +123,7 @@ if ($client->getAccessToken())
         $city_id = $rowResultCity['id'];
 
         // Retrieve number of user who lived in this city
-        $query              = "SELECT COUNT(city_id) FROM `globe_plus`.`user` WHERE city_id=$city_id";
+        $query              = "SELECT COUNT(city_id) FROM `".DATABASE."`.`user` WHERE city_id=$city_id";
         $resultUserLived    = $mysqli->query($query);
         $rowResultUserLived = $resultUserLived->fetch_array(MYSQLI_NUM);
         $nbUsersLived       = $rowResultUserLived[0];

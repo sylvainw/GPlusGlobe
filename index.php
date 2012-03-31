@@ -11,7 +11,7 @@ if (isset($_REQUEST['logout']))
 $resultPicture = $mysqli->query($query);
 
 // Retrieve number of users
-$query              = "SELECT COUNT(plus_id) FROM `globe_plus`.`user`";
+$query              = "SELECT COUNT(plus_id) FROM `".DATABASE."`.`user`";
 $resultUserCount    = $mysqli->query($query);
 $rowResultUserCount = $resultUserCount->fetch_array(MYSQLI_NUM);
 $nbUsers            = $rowResultUserCount[0];
@@ -170,7 +170,7 @@ $nbUsers            = $rowResultUserCount[0];
     <script type="text/javascript" src="http://data-arts.appspot.com/globe/third-party/Three/Detector.js"></script>
     <script type="text/javascript" src="http://data-arts.appspot.com/globe/globe.js"></script>
     <script type="text/javascript">
-      var globe=DAT.Globe(document.getElementById('container'));xhr=new XMLHttpRequest();xhr.open('GET','gplus.json',true);xhr.onreadystatechange=function(e){if(xhr.readyState===4){if(xhr.status===200){var data=JSON.parse(xhr.responseText);window.data=data;globe.addData(data,{format:'magnitude'});globe.createPoints();globe.animate()}}};xhr.send(null);
+      var globe=DAT.Globe(document.getElementById('container'));xhr=new XMLHttpRequest();xhr.open('GET','<?php echo JSON_FILENAME ?>',true);xhr.onreadystatechange=function(e){if(xhr.readyState===4){if(xhr.status===200){var data=JSON.parse(xhr.responseText);window.data=data;globe.addData(data,{format:'magnitude'});globe.createPoints();globe.animate()}}};xhr.send(null);
     </script>
   </body>
 </html>
