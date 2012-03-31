@@ -91,6 +91,7 @@ class apiOAuth2 extends apiAuth {
           'client_id' => $this->clientId,
           'client_secret' => $this->clientSecret
       )));
+
       if ($request->getResponseHttpCode() == 200) {
         $this->setAccessToken($request->getResponseBody());
         $this->accessToken['created'] = time();
@@ -138,7 +139,6 @@ class apiOAuth2 extends apiAuth {
    * @throws apiAuthException Thrown when $accessToken is invalid.
    */
   public function setAccessToken($accessToken) {
-    die(print_r(json_decode($accessToken)));
     $accessToken = json_decode($accessToken, true);
     if ($accessToken == null) {
       throw new apiAuthException('Could not json decode the access token');
@@ -202,9 +202,9 @@ class apiOAuth2 extends apiAuth {
     }
 
     // Add the OAuth2 header to the request
-    $headers = $request->getHeaders();
-    $headers[] = "Authorization: Bearer " . $this->accessToken['access_token'];
-    $request->setHeaders($headers);
+    $request->setRequestHeaders(
+        array('Authorization' => 'Bearer ' . $this->accessToken['access_token'])
+    );
 
     return $request;
   }
@@ -294,7 +294,11 @@ class apiOAuth2 extends apiAuth {
    * @param $audience
    * @return apiLoginTicket
    */
-  function verifyIdToken($id_token, $audience = null) {
+  public function verifyIdToken($id_token = null, $audience = null) {
+    if (!$id_token) {
+      $id_token = $this->accessToken['id_token'];
+    }
+
     $certs = $this->getFederatedSignonCerts();
     if (!$audience) {
       $audience = $this->clientId;
