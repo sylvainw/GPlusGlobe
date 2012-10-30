@@ -1,13 +1,13 @@
 <?php
 require_once 'config.php';
-require_once 'src/apiClient.php';
-require_once 'src/contrib/apiPlusService.php';
+require_once 'src/Google_Client.php';
+require_once 'src/contrib/Google_PlusService.php';
 require_once 'src/gMaps.php';
 
 $mysqli = new mysqli(SERVER, USER, PASSWORD, DATABASE);
 $gmap   = new gMaps(MAP_KEY);
-$client = new apiClient();
-$plus   = new apiPlusService($client);
+$client = new Google_Client();
+$plus   = new Google_PlusService($client);
 
 $mysqli->query('SET NAMES utf8');
 
@@ -130,7 +130,7 @@ if ($client->getAccessToken())
         
         $content .= $rowResultCity['latitude'] . ', ';
         $content .= $rowResultCity['longitude'] . ', ';
-        $content .= $nbUsersLived / $nbUsers * 18 . ', ';
+        $content .= $nbUsersLived / $nbUsers * 100 . ', ';
       }
 
       $content .= ']';

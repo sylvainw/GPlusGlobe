@@ -126,7 +126,7 @@ $nbUsers            = $rowResultUserCount[0];
             <a href="http://www.sylvainweber.com/">
                 <img src="https://lh4.googleusercontent.com/-dyyqgKMxSlU/AAAAAAAAAAI/AAAAAAAANOs/ZebQTZD_Llw/photo.jpg" alt="" height="29" />
             </a>
-            <a href="http://www.sylvainweber.com/">Sylvain WEBER</a>(formerly Googler)</li>
+            <a href="http://www.sylvainweber.com/">Sylvain WEBER</a> (formerly Googler)</li>
         <li>Victor DELPEYROUX</li>
       </ul>
       <p class="helper">
@@ -153,7 +153,7 @@ $nbUsers            = $rowResultUserCount[0];
         </div>
       <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4e8c844c4fe8d5ee"></script>
         <p>
-          The Globe+ project is an experiment based on <a href="http://www.chromeexperiments.com/globe">WebGL Globe</a>, <a href="https://developers.google.com/+/api/">Google+ (OAuth2)</a> and <a href="http://code.google.com/intl/en-EN/apis/maps/">Gmaps APIs</a>.
+          The Google+ Globe project is an experiment based on <a href="http://www.chromeexperiments.com/globe">WebGL Globe</a>, <a href="https://developers.google.com/+/api/">Google+ (OAuth2)</a> and <a href="http://code.google.com/intl/en-EN/apis/maps/">Gmaps APIs</a>.
         </p>
 
       </div>
