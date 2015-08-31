@@ -1,6 +1,7 @@
 <?php
 require_once 'config.php';
 
+error_reporting(0);
 $mysqli = new mysqli(SERVER, USER, PASSWORD, DATABASE);
 
 $query = "SELECT plus_picture, plus_id, display_name FROM `user` ORDER BY id DESC LIMIT 0,10";
